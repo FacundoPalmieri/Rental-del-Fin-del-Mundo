@@ -19,21 +19,24 @@ This is main CSS file that contains custom style rules used in this template
 /** Base Styles
 --------------------------------------------------------------*/
 :root {
-  --accent-color: #94CA21;
+  --accent-color: #F58634;
   --secondary-color: #79A6DE;
   --dark-color: #222222;
   --white-color: #FFFFFF;
   --body-text-color: #414141;
   --light-text-color: #686868;
-  --link-color: #94CA21;
+  --link-color:  #F58634;
   --background-color: #F9F9F9;
 }
 
 /* Fonts */
 :root {
-  --body-font: 'Raleway', sans-serif;
-  --heading-font: 'Kalam', cursive;
-  --sub-heading-font: 'Raleway', sans-serif;
+  
+    --body-font: 'Barlow Condensed';
+    --heading-font: 'Barlow Condensed';
+    --heading-font-bold: 'Barlow Condensed';
+    --sub-heading-font: 'Barlow Condensed';
+  
 }
 
 
@@ -68,7 +71,7 @@ h2,
 .h2,
 h3,
 .h3 {
-  font-family: var(--heading-font);
+  font-family: var(--heading-font-bold);
   font-weight: 700;
   color: var(--dark-color);
 
@@ -238,9 +241,23 @@ Index page style start
 /*---- navigation section style start ----*/
 
 nav.navbar {
+  width: 1349px;
+  height: 100px;
   background: var(--white-color);
   z-index: 9999999;
 }
+
+
+/* Logo */
+.navbar-brand img {
+  width: 175px; 
+  height: auto; 
+  margin-left: 0px;
+ 
+
+}
+
+
 
 a.nav-link,
 .nav-button {
@@ -268,6 +285,9 @@ a.nav-link:hover::after {
   transition: width 0.3s;
 }
 
+.container.toolbar {
+  margin-bottom: -100px; 
+}
 
 /* dropdown */
 .dropdown-toggle::after {
@@ -316,6 +336,13 @@ section#hero {
   bottom: 0px;
 }
 
+/* Banner */
+#hero .pattern-overlay img {
+  width: 100%; 
+  height: auto; 
+  margin-bottom: -150px; 
+
+}
 
 @media only screen and (max-width: 992px) {
   .pattern-overlay.pattern-right {
@@ -400,7 +427,7 @@ iconify-icon.search-icons {
 .bullet {
   z-index: 1;
   position: v absolute;
-  background: #D3EB9F;
+  background: #e6e7e8;
   width: 25px;
   height: 25px;
   border-radius: 100%;
@@ -409,7 +436,7 @@ iconify-icon.search-icons {
 
 .bullet:hover {
   background: var(--accent-color);
-  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 12px #D3EB9F;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2), 0px 0px 0px 12px #52658C;
   border-radius: 15px;
 }
 
@@ -563,7 +590,7 @@ label#yearly-label {
 /* switch button style */
 .form-switch .form-check-input {
   width: 4em;
-  background-color: #D3EB9F;
+  background-color: #E6E7E8;;
 
   --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
 }
@@ -573,22 +600,22 @@ label#yearly-label {
 }
 
 .form-check-input:focus {
-  border-color: #D3EB9F;
+  border-color: #E6E7E8;
   box-shadow: none;
 }
 
 .form-check-input:checked {
-  background-color: #D3EB9F;
-  border-color: #D3EB9F;
+  background-color: #E6E7E8;
+  border-color: #E6E7E8;
 }
 
 .form-check-input {
-  border: var(--bs-border-width) solid #D3EB9F;
+  border: var(--bs-border-width) solid #52658c;
 }
 
 .form-switch .form-check-input:focus {
   --bs-form-switch-bg: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
-  background-color: #D3EB9F;
+  background-color: #F58634;
 
 }
 
@@ -730,4 +757,9 @@ iconify-icon.property-icon {
   color: var(--body-text-color);
   font-size: 30px;
 
+}
+
+.whatsapp-logo {
+  width: 40px; 
+  height: auto; 
 }
