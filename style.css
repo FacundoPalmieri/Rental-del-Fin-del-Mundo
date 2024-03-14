@@ -322,21 +322,16 @@ section#hero {
   padding: 200px 0px;
 }
 
-#APlicaAlBanner
-.hero-content h1,
-.hero-content h2,
-.hero-content a {
+
+.hero-content h1, .hero-content h2, .hero-content a {
     opacity: 0; /* Las letras no son visibles al principio */
     transition: opacity 1s ease; /* Transición suave */
 }
 
-#APlicaAlBanner
-.hero-content h1.horizontal,
-.hero-content h2.horizontal,
-.hero-content a.horizontal {
+
+.hero-content h1.horizontal, .hero-content h2.horizontal, .hero-content a.horizontal {
     opacity: 1; /* Hace que las letras sean visibles */
 }
-
 
 
 .hero-paragraph {
@@ -504,7 +499,7 @@ iconify-icon.search-icons {
 }
 
 
-.swiper-button-disabled {
+.swiper-button-next.swiper-button-disabled, .swiper-button-prev.swiper-button-disabled{
   opacity: 0; /* el cero desaparece el botón para seguir scrolleando*/
   cursor: auto;
   pointer-events: none;
@@ -517,18 +512,6 @@ iconify-icon.search-icons {
   --bs-card-inner-border-radius: none;
 }
 
-
-
-.card-container {
-  transform: scale(0.9);
-  transition: transform 0.3s ease;
-}
-
-
-.card-container:hover {
-  transform: scale(1);
-
-}
 
 
 .rental-list {
@@ -624,7 +607,6 @@ iconify-icon.pricing-lable-icon {
 .pricing-detail {
   border: 5px solid #E4E4E4;
   border-radius: 10px;
-  height: 580px;
   display: flex;
   flex-direction: column;
   justify-content: space-between; 
