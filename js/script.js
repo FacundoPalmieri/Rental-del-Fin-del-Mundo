@@ -86,10 +86,11 @@
 
 
     // rental swiper
-    var swiper = new Swiper(".rental-swiper", {
+    var rentalSwiper = new Swiper(".rental-swiper", {
       slidesPerView: 3,
       spaceBetween: 30,
       freeMode: true,
+      loop: true,
       navigation: {
         nextEl: ".rental-swiper-next",
         prevEl: ".rental-swiper-prev",
@@ -100,7 +101,7 @@
           spaceBetween: 20,
         },
         768: {
-          slidesPerView: 2,
+          slidesPerView: 3,
           spaceBetween: 30,
         },
         1400: {
@@ -112,7 +113,7 @@
 
 
     //testimonial swiper
-    var swiper = new Swiper(".testimonial-swiper", {
+    var testimonialSwiper = new Swiper(".testimonial-swiper", {
       loop: true,
       pagination: {
         el: ".swiper-pagination",

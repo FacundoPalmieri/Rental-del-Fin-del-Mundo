@@ -505,7 +505,7 @@ iconify-icon.search-icons {
 
 
 .swiper-button-disabled {
-  opacity: 0; /* el cero desaparece el botón para seguir scrolleando*/
+  opacity: 1; /* el cero desaparece el botón para seguir scrolleando*/
   cursor: auto;
   pointer-events: none;
 }
@@ -821,4 +821,13 @@ iconify-icon.property-icon {
 .whatsapp-logo {
   width: 40px; 
   height: auto; 
+}
+
+.swiper-slide {
+  transform: scale(.9) !important;
+}
+.swiper-slide.swiper-slide-next {
+  transform: scale(1) !important;
+  margin-top: 0.8em;
+  transition: transform .5s !important;
 }
