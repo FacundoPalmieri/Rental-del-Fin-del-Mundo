@@ -530,11 +530,12 @@ iconify-icon.search-icons {
 
 img.card-img-top {
   border-radius: 10px;
-  
   height: 320px; /* Ajusta la altura según sea necesario */
-  object-fit: cover; /* Ajusta cómo se ajusta la imagen dentro del contenedor */
+  object-fit: contain; /* Ajusta cómo se ajusta la imagen dentro del contenedor */
+}
 
- 
+.card-text {
+  column-count: 2;
 }
 
 @media only screen and (max-width: 990px) {
