@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var bannerImage = document.getElementById('banner-image');
+        var textElements = document.querySelectorAll('.hero-content h1, .hero-content h2, .hero-content a');
+
+        // Agregar clase para animación de la imagen
+        bannerImage.classList.add('loaded');
+
+        // Retrasar la animación de las letras después de un cierto tiempo
+        setTimeout(function() {
+            textElements.forEach(function(element) {
+                element.classList.add('horizontal');
+            });
+        }, 1000); // Ajusta este valor según sea necesario para sincronizar la animación con la imagen
+    });
+</script>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -60,10 +77,10 @@
                             <a class="nav-link active px-3" aria-current="page" href="#">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link px-3" href="#rental">Vehículos</a>
+                            <a class="nav-link px-3" href="#rental">Flota</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link px-3" href="#pricing">Precios</a>
+                            <a class="nav-link px-3" href="#pricing">Promos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link px-3" href="#services">Servicios</a>
@@ -72,7 +89,10 @@
                             <a class="nav-link px-3" href="#blog">Blog</a>
                         </li> -->
                         <li class="nav-item">
-                            <a class="nav-link px-3" href="#action">Contacto</a>
+                            <a class="nav-link px-3" href="#faq">Preguntas Frecuentes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3" href="#footer">Contacto</a>
                         </li>
                         <!-- <li class="nav-item dropdown text-center">
                             <a class="nav-link px-3 dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
@@ -323,17 +343,15 @@
     <!-- hero section start  -->
     <section id="hero" class="position-relative overflow-hidden">
         <div class="pattern-overlay pattern-right position-absolute">
-            <img src="images/Banner.JPG" alt="pattern">
+            <img src="images/Banner.JPG" alt="pattern" id="banner-image">
         </div>
         <div class="hero-content container text-center position-relative" style="z-index: 1;">
             <!-- Agregamos z-index para que el texto esté por encima de la imagen -->
             <div class="row">
                 <div class="detail mb-4">
                     <h1 class="">Rental  <span class="text-primary">Del Fin del Mundo  </span> </h1>
-                    <h2 class="hero-paragraph">Comience la aventura.</h2>
-                 
-                        <a href="https://wa.me/5492901647651" class="btn btn-primary mt-2">Contactenos! </a>
-                    
+                    <h2 class="hero-paragraph">Comenza la aventura.</h2>
+                    <a href="https://api.whatsapp.com/send?phone=+542901647651&text=Hola" target="_blank" class="btn btn-primary mt-2">Contactanos! </a>       
                 </div>
             </div>
         </div>
@@ -414,7 +432,7 @@
     </section> -->
 
     <!-- process section start  -->
-    <section id="process">
+    <!-- <section id="process">
         <div class=" process-content container">
             <h2 class=" text-center my-5 pb-5">Proceso de  <span class="text-primary"> alquiler </span> </h2>
             <hr class="progress-line">
@@ -444,7 +462,7 @@
 
 
         </div>
-    </section>
+    </section> -->
 
     <!-- rental section start  -->
     <section id="rental" class="position-relative">
@@ -459,9 +477,9 @@
 
                     <div class="swiper-slide">
                         <div class="card">
-                            <a href="car-single.html"><img src="images/PrismaFrente.JPG" class="card-img-top" alt="..."></a>
+                            <a href="car-single.html"  style="pointer-events: none;"><img src="images/PrismaFrente.JPG" class="card-img-top" alt="..."></a>
                             <div class="card-body p-4">
-                                <a href="car-single.html">
+                                <a href="car-single.html" style="pointer-events: none;">
                                     <h4 class="card-title">Chevrolet Prisma</h4>
                                 </a>
                                 <div class="card-text ">
@@ -482,7 +500,7 @@
                                 </div>
                                 <hr>
                                 <div class="d-flex justify-content-between">
-                                    <h3 class="pt-2">Desde $43000 <span class="rental-price">/día</span></h3>
+                                    <h3 class="pt-2" style="font-size: 28px;">Desde $43000 <span class="rental-price">/día</span></h3>
                                     <!-- <a href="car-single.html" class="btn btn-primary">Reservar ahora! </a> -->
                                 </div>
 
@@ -491,9 +509,9 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="card">
-                            <a href="car-single.html"><img src="images/EtiosFrente.png" class="card-img-top" alt="..."></a>
+                            <a href="car-single.html" style="pointer-events: none;"><img src="images/ToyotaEtios.jpg" class="card-img-top" alt="..."></a>
                             <div class="card-body p-4">
-                                <a href="car-single.html">
+                                <a href="car-single.html" style="pointer-events: none;">
                                     <h4 class="card-title">Toyota Etios</h4>
                                 </a>
                                 <div class="card-text ">
@@ -514,7 +532,7 @@
                                 </div>
                                 <hr>
                                 <div class="d-flex justify-content-between">
-                                    <h3 class="pt-2">Desde $39.000 <span class="rental-price">/día</span></h3>
+                                    <h3 class="pt-2" style="font-size: 28px;">Desde $39.000  <span class="rental-price">/día</span></h3>
                                     <!-- <a href="car-single.html" class="btn btn-primary">Reservar ahora!</a> -->
                                 </div>
 
@@ -523,9 +541,9 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="card">
-                            <a href="car-single.html"><img src="images/car3.png" class="card-img-top" alt="..."></a>
+                            <a href="car-single.html" style="pointer-events: none;"><img src="images/ChevroletSpin.jpg" class="card-img-top" alt="..."></a>
                             <div class="card-body p-4">
-                                <a href="car-single.html">
+                                <a href="car-single.html" style="pointer-events: none;">
                                     <h4 class="card-title">Chevrolet Spin Active</h4>
                                 </a>
                                 <div class="card-text ">
@@ -546,7 +564,7 @@
                                 </div>
                                 <hr>
                                 <div class="d-flex justify-content-between">
-                                    <h3 class="pt-2">Desde $66.000 <span class="rental-price">/día</span></h3>
+                                    <h3 class="pt-2" style="font-size: 28px;">Desde $66.000 <span class="rental-price">/día</span></h3>
                                     <!-- <a href="car-single.html" class="btn btn-primary">Reservar ahora!</a> -->
                                 </div>
 
@@ -555,9 +573,9 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="card">
-                            <a href="car-single.html"><img src="images/car1.png" class="card-img-top" alt="..."></a>
+                            <a href="car-single.html" style="pointer-events: none;"><img src="images/VWPolo.jpg" class="card-img-top" alt="..."></a>
                             <div class="card-body p-4">
-                                <a href="car-single.html">
+                                <a href="car-single.html" style="pointer-events: none;">
                                     <h4 class="card-title">Volkswagen Polo</h4>
                                 </a>
                                 <div class="card-text ">
@@ -578,7 +596,7 @@
                                 </div>
                                 <hr>
                                 <div class="d-flex justify-content-between">
-                                    <h3 class="pt-2">Desde $49.000 <span class="rental-price">/día</span></h3>
+                                    <h3 class="pt-2" style="font-size: 28px;" >Desde $49.000 <span class="rental-price">/día</span></h3>
                                     <!-- <a href="car-single.html" class="btn btn-primary">rent now </a> -->
                                 </div>
 
@@ -587,9 +605,9 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="card">
-                            <a href="car-single.html"><img src="images/car2.png" class="card-img-top" alt="..."></a>
+                            <a href="car-single.html" style="pointer-events: none;"><img src="images/GolTrend.jpeg" class="card-img-top" alt="..."></a>
                             <div class="card-body p-4">
-                                <a href="car-single.html">
+                                <a href="car-single.html" style="pointer-events: none;">
                                     <h4 class="card-title">Gol Trend Line última Generación</h4>
                                 </a>
                                 <div class="card-text ">
@@ -610,7 +628,7 @@
                                 </div>
                                 <hr>
                                 <div class="d-flex justify-content-between">
-                                    <h3 class="pt-2">Desde $47.000 <span class="rental-price">/día</span></h3>
+                                    <h3 class="pt-2" style="font-size: 28px;">Desde $47.000 <span class="rental-price">/día</span></h3>
                                     <!-- <a href="car-single.html" class="btn btn-primary">rent now </a> -->
                                 </div>
 
@@ -678,7 +696,7 @@
                             en muy buenas condiciones. Les agradezco por la atención.
                             <h5>David Joel</h5>
                             </p>
-                            <h6><a href="https://maps.app.goo.gl/qeM4w9rtZiwLj2HG6" style="color: #52658c; text-decoration: underline;""> Enlace a comentario Google Maps</a></h6>
+                            <h6><a target="_blank" href="https://maps.app.goo.gl/qeM4w9rtZiwLj2HG6" style="color: #52658c; text-decoration: underline;""> Enlace a comentario Google Maps</a></h6>
                         </div>
                     </div>
                     <div class="swiper-slide text-center">
@@ -690,7 +708,7 @@
                             servicio.
                             </p>
                             <h5>Gabriela Rodriguez</h5>
-                            <h6><a href="https://maps.app.goo.gl/ye7TYQBjPRzMRZ6w7" style="color: #52658c; text-decoration: underline;""> Enlace a comentario Google Maps</a></h6>
+                            <h6><a target="_blank" href="https://maps.app.goo.gl/ye7TYQBjPRzMRZ6w7" style="color: #52658c; text-decoration: underline;""> Enlace a comentario Google Maps</a></h6>
                         </div>
                     </div>
                     <!-- <div class="swiper-slide text-center">
@@ -752,10 +770,10 @@
                     </div>
                 </div> -->
 
-                <div class="col pb-4">
+                <div class="col pb-4" >
                     <div class=" pricing-detail py-5  text-center">
                         <div class="pricing-content">
-                            <h5>Básico</h5>
+                            <h4>Básico</h4>
                             <p>Chevrolet Prisma / Fiat Cronos / Volkswagen Polo</p></p>
 
                             <div class="content monthly pt-2">
@@ -786,7 +804,7 @@
                 <div class="col pb-4">
                     <div class=" pricing-detail py-5  text-center">
                         <div class="pricing-content">
-                            <h5 class="price-recommend">Estandar *</h5>
+                            <h4 class="price-recommend">Estandar *</h4>
                             <p>VW Gol Trend y Toyota Etios</p>
                             <div class="content monthly pt-2">
                                 <p>✓ 1 día $39.000 * </p>
@@ -815,7 +833,7 @@
                 <div class="col pb-4">
                     <div class=" pricing-detail py-5  text-center">
                         <div class="pricing-content">
-                            <h5>Pro</h5>
+                            <h4>Pro</h4>
                             <p>Chevrolet Spin</p>
                             <div class="content monthly pt-2">
                                 <p>✓ 1 día $66.000 *</p>
@@ -1049,30 +1067,29 @@
     </section>
 
     <!-- Footer Section Starts -->
-    <!-- <section id="footer">
+    <section id="footer">
         <div class="container footer-container mt-5">
             <footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 my-5 py-5 ">
 
                 <div class=" col-md-4 mt-5 mt-md-0 ">
-                    <img src="images/logo.png" alt="image">
-                    <p class="py-3">Vel non nibh vestibulum massa ullam corper bib endum ultrices venenatis, id id sed
-                        mass.</p>
+                    <!-- <img src="images/logo.png" alt="image"> -->
+                    <p class="py-3">Seguinos en nuestras redes.</p>
                     <div class="d-flex align-items-center ">
-                        <a href="#" target="_blank"><iconify-icon class="social-link-icon pe-4"
-                                icon="mdi:facebook"></iconify-icon></a>
-                        <a href="#" target="_blank"><iconify-icon class="social-link-icon pe-4"
-                                icon="mdi:twitter"></iconify-icon></a>
-                        <a href="#" target="_blank"><iconify-icon class="social-link-icon pe-4"
+                        <a href="https://api.whatsapp.com/send?phone=+542901647651&text=Hola" target="_blank">
+                            <iconify-icon class="social-link-icon pe-4" icon="fa-brands:whatsapp"></iconify-icon>
+                        <!-- <a href="#" target="_blank"><iconify-icon class="social-link-icon pe-4"
+                                icon="mdi:twitter"></iconify-icon></a> -->
+                        <a href="https://www.instagram.com/rentaldelfindelmundo/" target="_blank"><iconify-icon class="social-link-icon pe-4"
                                 icon="mdi:instagram"></iconify-icon></a>
-                        <a href="#" target="_blank"><iconify-icon class="social-link-icon pe-4"
-                                icon="mdi:linkedin"></iconify-icon></a>
-                        <a href="#" target="_blank"><iconify-icon class="social-link-icon pe-4"
+                        <!-- <a href="#" target="_blank"><iconify-icon class="social-link-icon pe-4"
+                                icon="mdi:linkedin"></iconify-icon></a> -->
+                        <a href="https://www.youtube.com/channel/UCFgU2twLBky9tYLwnr6qghw" target="_blank"><iconify-icon class="social-link-icon pe-4"
                                 icon="mdi:youtube"></iconify-icon></a>
                     </div>
 
                 </div>
 
-                <div class="col-md-7 offset-md-1 mt-5">
+                <!-- <div class="col-md-7 offset-md-1 mt-5">
                     <ul class="footer-nav list-unstyled ">
                         <li class="nav-item me-2 mb-3">
                             <a class="nav-link px-4" aria-current="page" href="#">Home</a>
@@ -1093,10 +1110,10 @@
                             <a class="nav-link px-4" href="#">Contact</a>
                         </li>
                     </ul>
-                </div>
+                </div> -->
 
             </footer>
-        </div> -->
+        </div>
 
 
 
@@ -1132,6 +1149,17 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+
+
+    <script>
+        var swiper = new Swiper('.testimonial-swiper', {
+          loop: true,
+          autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+          },
+        });
+      </script>
 
 </body>
 

@@ -241,8 +241,7 @@ Index page style start
 /*---- navigation section style start ----*/
 
 nav.navbar {
-  width: 1349px;
-  height: 100px;
+  height: 170px;
   background: var(--white-color);
   z-index: 9999999;
 }
@@ -323,8 +322,26 @@ section#hero {
   padding: 200px 0px;
 }
 
+#APlicaAlBanner
+.hero-content h1,
+.hero-content h2,
+.hero-content a {
+    opacity: 0; /* Las letras no son visibles al principio */
+    transition: opacity 1s ease; /* Transición suave */
+}
+
+#APlicaAlBanner
+.hero-content h1.horizontal,
+.hero-content h2.horizontal,
+.hero-content a.horizontal {
+    opacity: 1; /* Hace que las letras sean visibles */
+}
+
+
+
 .hero-paragraph {
   font-size: 1.313rem;
+  color: #E6E7E8
 }
 
 .pattern-overlay.pattern-right {
@@ -343,6 +360,19 @@ section#hero {
   margin-bottom: -150px; 
 
 }
+
+#banner-image {
+  opacity: 0; /* La imagen no es visible al principio */
+  transform: translateY(100%); /* La imagen está posicionada debajo */
+  transition: opacity 1s ease, transform 1s ease; /* Transiciones suaves */
+}
+
+#banner-image.loaded {
+  opacity: 1; /* Hace que la imagen sea visible */
+  transform: translateY(0); /* Mueve la imagen hacia arriba */
+}
+
+
 
 @media only screen and (max-width: 992px) {
   .pattern-overlay.pattern-right {
@@ -473,11 +503,33 @@ iconify-icon.search-icons {
 
 }
 
+
+.swiper-button-disabled {
+  opacity: 0; /* el cero desaparece el botón para seguir scrolleando*/
+  cursor: auto;
+  pointer-events: none;
+}
+
+
 .card {
   --bs-card-border-width: none;
   --bs-card-border-radius: none;
   --bs-card-inner-border-radius: none;
 }
+
+
+
+.card-container {
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+
+.card-container:hover {
+  transform: scale(1);
+
+}
+
 
 .rental-list {
   color: var(--light-text-color);
@@ -495,6 +547,11 @@ iconify-icon.search-icons {
 
 img.card-img-top {
   border-radius: 10px;
+  
+  height: 320px; /* Ajusta la altura según sea necesario */
+  object-fit: cover; /* Ajusta cómo se ajusta la imagen dentro del contenedor */
+
+ 
 }
 
 @media only screen and (max-width: 990px) {
@@ -565,13 +622,15 @@ iconify-icon.pricing-lable-icon {
 }
 
 .pricing-detail {
-  border: 1px solid #E4E4E4;
+  border: 5px solid #E4E4E4;
   border-radius: 10px;
   height: 580px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between; 
 }
+
+
 
 .price-recommend {
   color: var(--accent-color);
