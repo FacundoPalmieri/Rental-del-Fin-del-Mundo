@@ -859,3 +859,9 @@ iconify-icon.property-icon {
   margin-top: 0.8em;
   transition: transform .5s !important;
 }
+
+
+#menu {
+  display: none;
+}
+
