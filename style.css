@@ -522,6 +522,10 @@ iconify-icon.search-icons {
 
 
 /*---- rental section style start ----*/
+
+#rental {
+  margin-bottom: 150px; /* Ajusta el tamaño del espacio según lo necesites */
+}
 .swiper-button-next.rental-arrow,
 .swiper-button-prev.rental-arrow {
   background: var(--white-color);
@@ -534,6 +538,7 @@ iconify-icon.search-icons {
   cursor: pointer;
   --swiper-navigation-size: 20px;
   font-weight: bold;
+  
 }
 
 .swiper-button-next.rental-arrow {
@@ -733,6 +738,8 @@ section#services {
 }
 
 /*---- faq section style start ----*/
+
+
 
 /* accordian style override  */
 .accordion-button {
