@@ -616,6 +616,7 @@ section#testimonial {
 .testimonial-paragraph {
   font-size: 31px;
   line-height: 146%;
+
 }
 
 @media only screen and (max-width: 768px) {
@@ -624,10 +625,8 @@ section#testimonial {
     color: var(--accent-color);
   }
 
-  .testimonial-paragraph {
-    font-size: 20px;
-    line-height: 146%;
-  }
+
+
 }
 
 
@@ -721,15 +720,23 @@ label#yearly-label {
 
 
 /*---- services section style start ----*/
+
+section#services {
+  min-height: 1300px; /* Establece un alto mínimo para la sección */
+}
+
 section#services {
   background: var(--background-color);
+
 }
 
 .services-components {
   background: var(--white-color);
-  border: 1px solid #FAFAFA;
+  border: 2px solid #F58634; ;
   box-shadow: 0px 12px 90px rgba(12, 12, 12, 0.06);
   border-radius: 9px;
+  width: 260px; /* Ancho fijo */
+  height: 250px; /* Alto fijo */
 }
 
 .services-icon {
@@ -857,7 +864,7 @@ iconify-icon.property-icon {
   height: auto; 
 }
 
-.swiper-slide {
+/* .swiper-slide {
   transform: scale(.7) !important;
   transition: transform .5s !important;
 }
@@ -865,7 +872,8 @@ iconify-icon.property-icon {
   transform: scale(1) !important;
   margin-top: 0.8em;
   transition: transform .5s !important;
-}
+} */
+
 
 
 #menu {
