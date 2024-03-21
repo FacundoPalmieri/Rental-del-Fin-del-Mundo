@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- script ================================================== -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         var bannerImage = document.getElementById('banner-image');
@@ -16,9 +32,66 @@
             });
         }, 1000); // Ajusta este valor según sea necesario para sincronizar la animación con la imagen
     });
+
+    document.addEventListener("DOMContentLoaded", function () {
+            // Obtenemos todos los enlaces dentro del menú
+            var menuLinks = document.querySelectorAll("#offcanvasNavbar .nav-link");
+
+            // Iteramos sobre cada enlace y agregamos un controlador de eventos de clic
+            menuLinks.forEach(function (link) {
+                link.addEventListener("click", function () {
+                    // Cerramos el menú al hacer clic en un enlace
+                    var offcanvasNavbar = document.getElementById("offcanvasNavbar");
+                    var offcanvasBootstrap = bootstrap.Offcanvas.getInstance(offcanvasNavbar);
+                    offcanvasBootstrap.hide();
+                });
+            });
+        });
+
+    
+    //Para ajustar el margen del acordeon de preguntas frecuentes vs iconos redes sociales
+
+    $(document).ready(function(){
+        $('.accordion-button').click(function(){
+            // Verificar si al menos uno de los acordeones está abierto
+            if ($('.accordion-button[aria-expanded="true"]').length > 0) {
+                $('#faq').css('margin-bottom', '250px'); 
+            } else {
+                $('#faq').css('margin-bottom', '-00'); 
+            }
+        });
+    });
+
+    
+    document.addEventListener('DOMContentLoaded', function () {
+        var swiper = new Swiper('.testimonial-swiper', {
+            slidesPerView: 1,
+            loop: true,
+            autoplay: {
+                delay: 5000, // Cambia el intervalo de tiempo entre cada testimonio (en milisegundos)
+                disableOnInteraction: false, // Permite que el autoplay continúe incluso si el usuario interactúa con el slider
+            },
+            pagination: {
+                el: '.swiper-pagination',
+            },
+        });
+    });
+
 </script>
 
 <head>
+
+    <!-- Google Tag Manager -->
+    <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-5KBRZPB7');
+    </script>
+    <!-- End Google Tag Manager -->
+
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -30,6 +103,7 @@
 
     <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
 
     <!--Bootstrap ================================================== -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -56,6 +130,13 @@
 
 <body data-bs-spy="scroll" data-bs-target="#header-nav" tabindex="0">
 
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5KBRZPB7" height="0" width="0" style="display:none;visibility:hidden">
+        </iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
     <nav class="navbar navbar-expand-lg  navbar-light container-fluid py-3 position-fixed ">
         <div class="container-fluid">
         <!-- <div class="container-sm"> -->
@@ -80,13 +161,13 @@
                             <a class="nav-link px-3 anchor-link" href="#rental">Flota</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link px-3" href="#testimonial">Experiencias</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link px-3 anchor-link" href="#pricing">Promos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link px-3 anchor-link" href="#services">Servicios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link px-3" href="#testimonial">Experiencias</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link px-3 anchor-link" href="#faq">Preguntas Frecuentes</a>
@@ -494,9 +575,6 @@
                                     </ul>
                                 </div>
                                 <hr>
-                                <div class="d-flex justify-content-center">
-                                    <h3 class="pt-2" style="font-size: 28px;">$38000 <span class="rental-price">/día</span></h3>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -518,10 +596,6 @@
                                     </ul>
                                 </div>
                                 <hr>
-                                <div class="d-flex justify-content-center">
-                                    <h3 class="pt-2" style="font-size: 28px;">$34.000  <span class="rental-price">/día</span></h3>
-                                </div>
-
                             </div>
                         </div>
                     </div>
@@ -543,9 +617,6 @@
                                     </ul>
                                 </div>
                                 <hr>
-                                <div class="d-flex justify-content-center">
-                                    <h3 class="pt-2" style="font-size: 28px;">$61.000 <span class="rental-price">/día</span></h3>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -567,9 +638,6 @@
                                     </ul>
                                 </div>
                                 <hr>
-                                <div class="d-flex justify-content-center">
-                                    <h3 class="pt-2" style="font-size: 28px;" >$38.000 <span class="rental-price">/día</span></h3>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -591,9 +659,6 @@
                                     </ul>
                                 </div>
                                 <hr>
-                                <div class="d-flex justify-content-center">
-                                    <h3 class="pt-2" style="font-size: 28px;">$34.000 <span class="rental-price">/día</span></h3>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -615,9 +680,6 @@
                                     </ul>
                                 </div>
                                 <hr>
-                                <div class="d-flex justify-content-center">
-                                    <h3 class="pt-2">$38.000 <span class="rental-price">/Día</span></h3>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -625,9 +687,6 @@
             </div>
         </div>
     </section>
-  
-     
-   
 
     <!-- testimonial section start  -->
     <h2 class=" text-center my-5">EXPERIENCIAS DE <span class="text-primary"> NUESTROS CLIENTES </span> </h2>
@@ -638,7 +697,7 @@
         <div class="container my-5 py-5">
             <div class="swiper testimonial-swiper">
                 <div class="swiper-wrapper">    
-                    <div class="swiper-slide text-center">
+                    <div class="swiper-slide text-center"> <!-- agregar clase comentario-google -->
                         <div class="offset-2 col-8">
                             <iconify-icon icon="mdi:format-quote-open" class="testimonial-icon"></iconify-icon>
                             <p class="testimonial-paragraph">Excelente Servicio. Recomiendo 100%100 a Cesar. 
@@ -666,8 +725,8 @@
                         <div class="offset-2 col-8">
                             <iconify-icon icon="mdi:format-quote-open" class="testimonial-icon"></iconify-icon>
                             <p class="testimonial-paragraph">Gran experiencia con rental del fin del mundo.. desde la cordialidad de su asesor
-                                 Cesar.. hasta el vehículo nuevo y en perfectas condiciones ayudaron para que nuestra estadia en la ciudad 
-                                 maravillosa del fin del mundo sea excelente!! Gracias..volveríamos a contar con ellos!!
+                                Cesar.. hasta el vehículo nuevo y en perfectas condiciones ayudaron para que nuestra estadia en la ciudad 
+                                maravillosa del fin del mundo sea excelente!! Gracias..volveríamos a contar con ellos!!
                             </p>
                             <h5>Germán Gutiérrez</h5>
                             <h6><a target="_blank" href="https://maps.app.goo.gl/RosnJWzT9Gf9kSGo7" style="color: #52658c; text-decoration: underline;"> Enlace a comentario Google Maps</a></h6>
@@ -704,10 +763,8 @@
                 <div class="swiper-pagination position-unset mt-4"></div>
             </div>
         </div>
-
-
-
     </section>
+
 
     <!-- pricing section start  -->
     <section id="pricing">
@@ -1148,64 +1205,17 @@
         <footer class="d-flex flex-wrap justify-content-between align-items-center border-top"></footer>
             
         <div class="container">
-            <footer class="d-flex flex-wrap justify-content-between align-items-center py-2 pt-4">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-2">
                 <div>
                     <p>© 2024 Rental del Fin del Mundo - Todos los derechos reservados</p> 
                     <p>Antártida Argentina 144, V9410 Ushuaia, Tierra del Fuego</p>
                     <p>Lunes a viernes 09:00 a 13:00 HS - 15:00 a 20:00 Hs.</p>
                     <p>Sábados 09:30 a 13:00 Hs.</p>
                 </div>
-               
 
             </footer>
         </div>
     </div>
-
-    
-
-
-    <!-- script ================================================== -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
-        crossorigin="anonymous"></script>
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
-
-
-
-
-    <script>
-        var swiper = new Swiper('.testimonial-swiper', {
-          loop: true,
-          autoplay: {
-            delay: 4000,
-            disableOnInteraction: false,
-          },
-        });
-      </script>
-
-<!--Para ajustar el margen del acordeon de preguntas frecuentes vs iconos redes sociales-->
-<script>
-    $(document).ready(function(){
-        $('.accordion-button').click(function(){
-            // Verificar si al menos uno de los acordeones está abierto
-            if ($('.accordion-button[aria-expanded="true"]').length > 0) {
-                $('#faq').css('margin-bottom', '250px'); 
-            } else {
-                $('#faq').css('margin-bottom', '-00'); 
-            }
-        });
-    });
-</script>
-
-
 
 </body>
 

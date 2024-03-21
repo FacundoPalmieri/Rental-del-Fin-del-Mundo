@@ -864,7 +864,7 @@ iconify-icon.property-icon {
   height: auto; 
 }
 
-/* .swiper-slide {
+.swiper-slide {
   transform: scale(.7) !important;
   transition: transform .5s !important;
 }
@@ -872,11 +872,8 @@ iconify-icon.property-icon {
   transform: scale(1) !important;
   margin-top: 0.8em;
   transition: transform .5s !important;
-} */
-
-
+} 
 
 #menu {
   display: none;
 }
-
