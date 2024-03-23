@@ -50,17 +50,20 @@
 
     
     //Para ajustar el margen del acordeon de preguntas frecuentes vs iconos redes sociales
-
     $(document).ready(function(){
-        $('.accordion-button').click(function(){
-            // Verificar si al menos uno de los acordeones está abierto
-            if ($('.accordion-button[aria-expanded="true"]').length > 0) {
-                $('#faq').css('margin-bottom', '250px'); 
-            } else {
-                $('#faq').css('margin-bottom', '-00'); 
-            }
+    $('.accordion-button').click(function(){
+        // Calcula la altura total de los acordeones abiertos
+        var totalHeight = 0;
+        $('.accordion-collapse.show').each(function(){
+            totalHeight += $(this).outerHeight(true);
         });
+        
+        // Establece el margen inferior de la sección #faq
+        $('#faq').css('margin-bottom', totalHeight + 'px');
     });
+});
+
+
 
     
     document.addEventListener('DOMContentLoaded', function () {
@@ -559,6 +562,7 @@
     <section id="rental" class="position-relative">
         <div class="container my-5 py-5">
             <h2 class=" text-center my-5">Vehículos en <span class="text-primary"> alquiler </span> </h2>
+            <hr>
 
             <div class="swiper-button-next rental-swiper-next rental-arrow position-absolute"></div>
             <div class="swiper-button-prev rental-swiper-prev rental-arrow position-absolute"></div>
@@ -699,6 +703,7 @@
 
     <!-- testimonial section start  -->
     <h2 class=" text-center my-5">EXPERIENCIAS DE <span class="text-primary"> NUESTROS CLIENTES </span> </h2>
+    <hr>
     <section id="testimonial" class=" position-relative">
         <div class="pattern-overlay pattern-left position-absolute">
             <img src="images/testimonial-pattern.png" alt="pattern">
@@ -997,13 +1002,7 @@
                         <P>Entregamos el vehículo con tanque lleno de nafta infinia<P>
                     </div>
                 </div>
-            </div>
-            <div style="margin-top: 90px;">
-                <h4 class="text-primary"> Requisitos:</h4>
-                <p><iconify-icon class="social-link-icon pe-4" icon="fa-solid:check-circle" style="font-size: 18px;"></iconify-icon>  Mayor de 21 años y poseer licencia de conducción vigente.</p>
-                <p> <iconify-icon class="social-link-icon pe-4" icon="fa-solid:check-circle" style="font-size: 18px;"></iconify-icon> <!-- Opción 1 --> Contar con Tarjeta de crédito.</p>
-            </div>
-          
+            </div>      
         </div>
 
 
@@ -1012,8 +1011,9 @@
         <section id="seguros">
             <div class="container my-5 py-5">
                 <h2 class="text-center my-5">Nuestros <span class="text-primary">Seguros</span></h2>
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-12 pb-4">
+                <hr>
+                <div class="row"  style="margin-top: 60px;">
+                    <div class="col-lg-6 col-md-6 col-12 pb-4" >
                         <div class="pricing-detail py-5 text-center">
                             <h4>Básico</h4>
                             <div>
@@ -1024,11 +1024,12 @@
                                     <iconify-icon class="social-link-icon" icon="fa-solid:check-circle" style="font-size: 18px;"></iconify-icon>Valor de la franquicia $215.000 *
                                 </p>
                                 <p class="social-link">
-                                    <iconify-icon class="social-link-icon" icon="fa-solid:check-circle" style="font-size: 18px;"></iconify-icon>No incluye pinchadura de neumático
-                                </p>
-                                <p class="social-link">
                                     * La franquicia caduca 10 días después de la fecha de la operación.
+                                </p >
+                                <p class="social-link">
+                                    ** No incluye pinchadura de neumático
                                 </p>
+                               
                             </div>
                         </div>
                     </div>
@@ -1037,16 +1038,16 @@
                             <h4>Full</h4>
                             <div>
                                 <p class="social-link">
-                                    <iconify-icon class="social-link-icon" icon="fa-solid:check-circle" style="font-size: 18px;"></iconify-icon>Pre Autorización con Tarjeta de crédito
+                                    <iconify-icon class="social-link-icon" icon="fa-solid:check-circle" style="font-size: 18px;"></iconify-icon> $10.000 x día.
                                 </p>
                                 <p class="social-link">
-                                    <iconify-icon class="social-link-icon" icon="fa-solid:check-circle" style="font-size: 18px;"></iconify-icon>Valor de la franquicia $215.000 *
+                                    <iconify-icon class="social-link-icon" icon="fa-solid:check-circle" style="font-size: 18px;"></iconify-icon>Cobertura total en caso de siniestro SIN abonar franquicia.
                                 </p>
                                 <p class="social-link">
-                                    <iconify-icon class="social-link-icon" icon="fa-solid:check-circle" style="font-size: 18px;"></iconify-icon>No incluye pinchadura de neumático
+                                    <iconify-icon class="social-link-icon" icon="fa-solid:check-circle" style="font-size: 18px;"></iconify-icon>No reembolsable.
                                 </p>
                                 <p class="social-link">
-                                    * La franquicia caduca 10 días después de la fecha de la operación.
+                                    *No incluye pinchadura de neumático
                                 </p>
                             </div>
                         </div>
@@ -1060,6 +1061,7 @@
     <section id="faq">
         <div class="container my-5 py-5">
             <h2 class=" text-center my-5">Tenemos <span class="text-primary">respuestas</span> </h2>
+            <hr>
             <div class="accordion col-md-8 offset-md-2" id="accordionPanelsStayOpenExample">
 
                 <div class="accordion-item mt-3">
@@ -1120,6 +1122,137 @@
                     </div>
                 </div>
                 <hr>
+                <div class="accordion-item mt-3">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false"
+                            aria-controls="panelsStayOpen-collapseFour">
+                            ¿Que requisitos debo cumplir?
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse"
+                        aria-labelledby="panelsStayOpen-headingFour">
+                        <div class="accordion-body">
+                            <p>Para poder contratar nuestro servicio se deber ser mayor de 21 años, poseer licencia de conducir vigente y contar una 
+                            tarjeta de crédito a su nombre.</p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="accordion-item mt-3">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingFive">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false"
+                            aria-controls="panelsStayOpen-collapseFive">
+                            ¿Entregan  el auto en  el aeropuerto, o lugar de alojamiento?
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse"
+                        aria-labelledby="panelsStayOpen-headingFive">
+                        <div class="accordion-body">
+                            <p>A partir de dos días de alquiler, la entrega y devolución del vehículo es en tu lugar de preferencia, SIN CARGO ADICIONAL. 
+                            Para alquileres de un solo día, la entrega y devolución deberán ser en nuestras oficinas. En caso de que la entrega y/o  devolución se 
+                            realice en otra parte tiene un costo extra de $5.000 por tramo .</p>
+                        </div>
+                    </div>
+                </div>
+                <hr>            
+                <div class="accordion-item mt-3">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingSix">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#panelsStayOpen-collapseSix" aria-expanded="false"
+                            aria-controls="panelsStayOpen-collapseSix">
+                            ¿Se puede alquilar un vehículo por horas?
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse"
+                        aria-labelledby="panelsStayOpen-headingSix">
+                        <div class="accordion-body">
+                            <p>
+                                La tarifa diaria cubre un periodo de 24 horas. En caso de necesitar el vehículo por más tiempo, tenes la opción
+                                 de añadir horas adicionales.
+                                El costo de cada hora adicional se calculará individualmente, hasta un máximo de 6 horas, con un valor fijo de 
+                                $3.500. Pasado este periodo de 6 horas, se aplicará nuevamente la tarifa diaria.</p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="accordion-item mt-3">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingSeven">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#panelsStayOpen-collapseSeven" aria-expanded="false"
+                            aria-controls="panelsStayOpen-collapseSeven">
+                            ¿Cúales son las formas de pago ?
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseSeven" class="accordion-collapse collapse"
+                        aria-labelledby="panelsStayOpen-headingSeven">
+                        <div class="accordion-body">
+                            <p>
+                            Podés abonar con transferencia bancaria, tarjeta de crédito, Link de pago,  código QR O efectivo.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="accordion-item mt-3">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingEight">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#panelsStayOpen-collapseEight" aria-expanded="false"
+                            aria-controls="panelsStayOpen-collapseEight">
+                            ¿Cómo puedo reservar un vehículo?
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseEight" class="accordion-collapse collapse"
+                        aria-labelledby="panelsStayOpen-headingEight">
+                        <div class="accordion-body">
+                            <p>
+                            Lo podés hacer desde nuestra página web o contactarnos por whatsapp o por mail.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="accordion-item mt-3">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingNine">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#panelsStayOpen-collapseNine" aria-expanded="false"
+                            aria-controls="panelsStayOpen-collapseNine">
+                            ¿Qué puedo hacer si no encuentro disponibilidad en las fechas que elijo?
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseNine" class="accordion-collapse collapse"
+                        aria-labelledby="panelsStayOpen-headingNine">
+                        <div class="accordion-body">
+                            <p>
+                            Envíanos un mensaje, buscaremos la forma de encontrar la disponibilidad que necesitas.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="accordion-item mt-3">
+                    <h2 class="accordion-header" id="panelsStayOpen-headingTen">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#panelsStayOpen-collapseTen" aria-expanded="false"
+                            aria-controls="panelsStayOpen-collapseTen">
+                            ¿Qué debo hacer en caso de una emergencia?
+                        </button>
+                    </h2>
+                    <div id="panelsStayOpen-collapseTen" class="accordion-collapse collapse"
+                        aria-labelledby="panelsStayOpen-headingTen">
+                        <div class="accordion-body">
+                            <p>
+                                Podés contactarnos cuando nos necesites, en caso de requerir auxilio podes llamar al seguro habilitado y 
+                                generar la denuncia correspondiente. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <hr>
             </div>
         </div>
     </section>
@@ -1178,7 +1311,7 @@
     <section id= "ubicacion">
         <div class="container py-5 my-5">
             <div class="row py-5">
-                <div class="text-center" style="margin-bottom: 20px;">
+                <div class="text-center" style="margin-bottom: 30px;">
                     <h2 class="mb-0">Podes <span class="text-primary">Encontrarnos</span> ACÁ</h2>        
                 </div>
                 <div class="text-center" style="margin-bottom: 20px;">
@@ -1213,6 +1346,10 @@
                 <a href="https://www.youtube.com/channel/UCFgU2twLBky9tYLwnr6qghw" target="_blank">
                     <iconify-icon class="social-link-icon pe-4" icon="mdi:youtube"></iconify-icon>
                 </a>
+                <a href="mailto:rentaldelfindelmundo@gmail.com" target="_blank">
+                    <iconify-icon class="social-link-icon pe-4" icon="mdi:email"></iconify-icon>
+                </a>
+                
             </div>
         </div>
              
@@ -1270,9 +1407,11 @@
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-2">
                 <div>
                     <p>© 2024 Rental del Fin del Mundo - Todos los derechos reservados</p> 
-                    <p>Antártida Argentina 144, V9410 Ushuaia, Tierra del Fuego</p>
-                    <p>Lunes a viernes 09:00 a 13:00 HS - 15:00 a 20:00 Hs.</p>
-                    <p>Sábados 09:30 a 13:00 Hs.</p>
+                    <p><iconify-icon class="social-link-icon pe-4 custom-icon" icon="mdi:map-marker"></iconify-icon>
+                        Antártida Argentina 144, V9410 Ushuaia, Tierra del Fuego</p>
+                    <p><iconify-icon class="social-link-icon pe-4 custom-icon" icon="mdi:clock"></iconify-icon>
+                        Lunes a viernes 09:00 a 13:00 HS - 15:00 a 20:00 Hs. | Sábados 09:30 a 13:00 Hs.</p>
+                    <p> <iconify-icon class="social-link-icon pe-4 custom-icon" icon="mdi:email"></iconify-icon> rentaldelfindelmundo@gmail.com</p>
                 </div>
 
             </footer>

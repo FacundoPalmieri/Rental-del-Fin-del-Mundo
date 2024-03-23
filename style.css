@@ -723,7 +723,7 @@ label#yearly-label {
 /*---- services section style start ----*/
 
 section#services {
-  min-height: 1500px; /* Establece un alto mínimo para la sección */
+  min-height: 1300px; /* Establece un alto mínimo para la sección */
 }
 
 section#services {
@@ -747,6 +747,9 @@ section#services {
 
 /*---- faq section style start ----*/
 
+section#faq {
+  min-height: 1200px; /* Establece un alto mínimo para la sección */
+}
 
 
 /* accordian style override  */
@@ -822,6 +825,11 @@ section#action {
 
 .social-link-icon.active {
   color: var(--accent-color);
+}
+
+/*--Iconos del fianl del footer--*/
+.custom-icon {
+  font-size: 15px;
 }
 
 .footer-nav {
