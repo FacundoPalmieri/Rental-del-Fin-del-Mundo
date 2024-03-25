@@ -155,7 +155,6 @@ a:hover {
 }
 
 @media only screen and (max-width: 768px) {
-
   h1,
   .h1 {
     font-size: 3rem;
@@ -328,10 +327,6 @@ a.nav-link:hover::after {
 section#hero {
   background: var(--background-color);
   height: 100vh;
-}
-
-section {
-  height: 100vh
 }
 
 .hero-content {
@@ -737,7 +732,7 @@ section#services {
   box-shadow: 0px 12px 90px rgba(12, 12, 12, 0.06);
   border-radius: 9px;
   width: 260px; /* Ancho fijo */
-  height: 150px; /* Alto fijo */
+  height: 120px; /* Alto fijo */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -899,6 +894,10 @@ iconify-icon.property-icon {
   transition: transform .5s !important;
 } 
 
+#testimonial .swiper-slide {
+  transform: scale(.7) !important;
+} 
+
 #menu {
   display: none;
 }
@@ -915,7 +914,7 @@ iconify-icon.property-icon {
 .flip-card-inner {
   position: relative;
   width: 260px;
-  height: 150px;
+  height: 120px;
   text-align: center;
   transition: transform 0.8s;
   transform-style: preserve-3d;
@@ -928,7 +927,7 @@ iconify-icon.property-icon {
 .flip-card-front, .flip-card-back {
   position: absolute;
   width: 260px;
-  height: 150px;
+  height: 120px;
   -webkit-backface-visibility: hidden; 
   backface-visibility: hidden;
 }
@@ -946,7 +945,7 @@ iconify-icon.property-icon {
 .flip-card-back p {
   color: white;
   text-transform: uppercase;
-  padding: 1em;
+  padding: .5em;
   margin-top: .8em;
 }
 

@@ -146,19 +146,3 @@
 
 })(jQuery);
 
-document.querySelectorAll('.anchor-link').forEach(link => {
-  link.addEventListener('click', function(e) {
-    // Prevent default anchor click behavior
-    e.preventDefault();
-
-    const hash = this.getAttribute('href');
-    const target = document.querySelector(hash);
-    if (target) {
-      // Calculate the position: target position - desired offset
-      const yPos = target.getBoundingClientRect().top + window.pageYOffset - 35;
-
-      // Scroll to the target position
-      window.scrollTo({top: yPos, behavior: 'smooth'});
-    }
-  });
-});

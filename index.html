@@ -170,7 +170,7 @@
                             <a class="nav-link px-3 anchor-link" href="#rental">Flota</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link px-3" href="#testimonial">Experiencias</a>
+                            <a class="nav-link px-3 anchor-link" href="#testimonial">Experiencias</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link px-3 anchor-link" href="#pricing">Promos</a>
@@ -562,7 +562,6 @@
     <section id="rental" class="position-relative">
         <div class="container my-5 py-5">
             <h2 class=" text-center my-5">Vehículos en <span class="text-primary"> alquiler </span> </h2>
-            <hr>
 
             <div class="swiper-button-next rental-swiper-next rental-arrow position-absolute"></div>
             <div class="swiper-button-prev rental-swiper-prev rental-arrow position-absolute"></div>
@@ -702,17 +701,16 @@
     </section>
 
     <!-- testimonial section start  -->
-    <h2 class=" text-center my-5">EXPERIENCIAS DE <span class="text-primary"> NUESTROS CLIENTES </span> </h2>
-    <hr>
     <section id="testimonial" class=" position-relative">
         <div class="pattern-overlay pattern-left position-absolute">
             <img src="images/testimonial-pattern.png" alt="pattern">
         </div>
         <div class="container my-5 py-5">
+            <h2 class=" text-center my-5">EXPERIENCIAS DE <span class="text-primary"> NUESTROS CLIENTES </span> </h2>
             <div class="swiper testimonial-swiper">
                 <div class="swiper-wrapper">    
                     <div class="swiper-slide text-center"> <!-- agregar clase comentario-google -->
-                        <div class="offset-2 col-8">
+                        <div class="col-12">
                             <iconify-icon icon="mdi:format-quote-open" class="testimonial-icon"></iconify-icon>
                             <p class="testimonial-paragraph">Excelente Servicio. Recomiendo 100%100 a Cesar. 
                             Nos explico todo, desde las normativas de como manejar en la ciudad en pendientes hasta las 
@@ -724,7 +722,7 @@
                         </div>
                     </div>
                     <div class="swiper-slide text-center">
-                        <div class="offset-2 col-8">
+                        <div class="col-12">
                             <iconify-icon icon="mdi:format-quote-open" class="testimonial-icon"></iconify-icon>
                             <p class="testimonial-paragraph">Excelente todo, la atención de César que nos esperó y asesoró muy bien y muy amable 
                             tanto por WhatsApp como en el local. El auto impecable y nuevo. Pedimos el seguro completo y fue la mejor opción 
@@ -736,7 +734,7 @@
                         </div>
                     </div>
                     <div class="swiper-slide text-center">
-                        <div class="offset-2 col-8">
+                        <div class="col-12">
                             <iconify-icon icon="mdi:format-quote-open" class="testimonial-icon"></iconify-icon>
                             <p class="testimonial-paragraph">Gran experiencia con rental del fin del mundo.. desde la cordialidad de su asesor
                                 Cesar.. hasta el vehículo nuevo y en perfectas condiciones ayudaron para que nuestra estadia en la ciudad 
@@ -747,7 +745,7 @@
                         </div>
                     </div>
                     <div class="swiper-slide text-center">
-                        <div class="offset-2 col-8">
+                        <div class="col-12">
                             <iconify-icon icon="mdi:format-quote-open" class="testimonial-icon"></iconify-icon>
                             <p class="testimonial-paragraph">Excelente servicio. Cesar fue muy amable y nos explico todo lo referente al auto y al 
                                 tránsito de Ushuaia ya que era nuestra primera vez manejando allí. Nos dieron un etios nuevo, súper cómodo y en 
@@ -759,7 +757,7 @@
                         </div>
                     </div>
                     <div class="swiper-slide text-center">
-                        <div class="offset-2 col-8">
+                        <div class="col-12">
                             <iconify-icon icon="mdi:format-quote-open" class="testimonial-icon"></iconify-icon>
                             <p class="testimonial-paragraph">Cesar fue super amable, además de tener autos en excelentes condiciones nos informo sobre 
                                 recorridos turísticos y gracias a el y su servicio pudimos pagar muchísimo menos por paseos que con una empresa de 
@@ -1090,7 +1088,6 @@
         <section id="seguros">
             <div class="container my-5 py-5">
                 <h2 class="text-center my-5">Nuestros <span class="text-primary">Seguros</span></h2>
-                <hr>
                 <div class="row"  style="margin-top: 60px;">
                     <div class="col-lg-6 col-md-6 col-12 pb-4" >
                         <div class="pricing-detail py-5 text-center">
@@ -1140,7 +1137,6 @@
     <section id="faq">
         <div class="container my-5 py-5">
             <h2 class=" text-center my-5">Tenemos <span class="text-primary">respuestas</span> </h2>
-            <hr>
             <div class="accordion col-md-8 offset-md-2" id="accordionPanelsStayOpenExample">
 
                 <div class="accordion-item mt-3">
@@ -1479,9 +1475,7 @@
 
     </div>
     
-    <div>
-        <footer class="d-flex flex-wrap justify-content-between align-items-center border-top"></footer>
-            
+    <div>            
         <div class="container">
             <footer class="d-flex flex-wrap justify-content-between align-items-center py-2">
                 <div>
@@ -1496,7 +1490,24 @@
             </footer>
         </div>
     </div>
+    <script>
+        document.querySelectorAll('.anchor-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Prevent default anchor click behavior
+            e.preventDefault();
 
+            const hash = this.getAttribute('href');
+            const target = document.querySelector(hash);
+            if (target) {
+            // Calculate the position: target position - desired offset
+            const yPos = target.getBoundingClientRect().top + window.scrollY - 35;
+
+            // Scroll to the target position
+            window.scrollTo({top: yPos, behavior: 'smooth'});
+            }
+        });
+    });
+    </script>
 </body>
 
 </html>
