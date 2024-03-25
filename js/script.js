@@ -8,6 +8,7 @@
 
   $(document).ready(function () {
 
+    
     // product single page
     var thumb_slider = new Swiper(".product-thumbnail-slider", {
       autoplay: true,
@@ -38,17 +39,17 @@
 
 
     yearlyLabel.classList.add('label-color'); // Set initial accent color to yearly label
-
+    monthlyLabel.classList.add('label-color'); 
 
     switchInput.addEventListener('change', function () {
       if (this.checked) {
         yearlyLabel.classList.add('label-color'); // Add color to label
-        monthlyLabel.classList.remove('label-color'); // Remove color from label
       } else {
         monthlyLabel.classList.add('label-color'); // Add color to label
-        yearlyLabel.classList.remove('label-color'); // Remove color from label
       }
     });
+
+    switchInput.click()
 
     contentElements.forEach(function (element) {
       if (element.classList.contains('yearly')) {
