@@ -969,3 +969,55 @@ iconify-icon.property-icon {
   justify-content: center;
   font-size: .9em;
 }
+
+#availabilityModal, #reservaModal, #graciasModal {
+  z-index: 9999999999;
+}
+
+.modal-content {
+  min-height: 90vh;
+  max-height: fit-content;
+  width: 90vw;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.modal {
+  --bs-modal-width: 100vw !important;
+}
+
+.busqueda {
+  padding-left: 0;
+}
+
+.busqueda .row>li {
+  padding-right: 1em;
+}
+
+.busqueda .card {
+  align-items: center;
+}
+
+.busqueda div {
+  text-align: center;
+}
+
+.busqueda .card-text {
+  column-count: 3; /* Default number of columns */
+}
+
+.busqueda button {
+  padding: 8px;
+}
+
+@media (max-width: 768px) {
+  .busqueda .card-text {
+      column-count: 2; /* Adjust to two columns on smaller screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .busqueda .card-text {
+      column-count: 1; /* Adjust to one column on even smaller screens */
+  }
+}

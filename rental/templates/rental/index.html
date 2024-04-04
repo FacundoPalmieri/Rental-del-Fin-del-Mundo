@@ -454,49 +454,150 @@
             </div>
         </div>
     </section>
+
+    <!-- Modal búsqueda -->
+    <div class="modal fade" id="availabilityModal" tabindex="-1" role="dialog" aria-labelledby="availabilityModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="availabilityModalLabel">Autos disponibles</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$('#availabilityModal').modal('hide');">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            <!-- Modal body content goes here -->
+            Busacndo rental por {{dias}} dias...<br>
+            Desde {{request.GET.start_date}} hasta {{request.GET.end_date}}.
+            {% if autos_disponbiles %}
+                <ul class="busqueda">
+                    {% for auto in autos_disponbiles %}
+                    
+                    <div class="card">
+                        <img src='{{auto.imagen}}' style="width:200px;" class="card-img-top" alt="...">
+                        <div class="card-body p-4">
+                            <h4 class="card-title">{{auto.marca}} {{auto.modelo}} {{auto.anio}}</h4>
+                            <div>Precio: ${{auto.precio_total}} (${{auto.precio_por_dia}} por día)</div>
+                            <div class="card-text">
+                                <ul class="d-flex list-unstyled">
+                                    <div class="row">
+                                        <li class="rental-list">Puertas: {{auto.puertas}}</li>
+                                        <li class="rental-list">Pasajeros: {{auto.pasajeros}}</li>
+                                        <li class="rental-list">Color: {{auto.color}}</li>
+                                        <li class="rental-list">{{auto.tipo}}</li>
+                                        <li class="rental-list">{% if baul %}Con baúl{% else %}Sin baúl{% endif %}</li>
+                                        <li class="rental-list">Caja {{auto.caja}}</li>     
+                                    </div>                        
+                                </ul>
+                            </div>
+                            <button id="{{auto.id}}" class="btn btn-primary mt-2 reservar">¡Lo quiero!</button>
+
+                            <hr>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>No hay autos disponibles para estas fechas.</p>
+            {% endif %}
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="$('#availabilityModal').modal('hide');">Cerrar</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Modal reserva -->
+    <div class="modal fade" id="reservaModal" tabindex="-1" role="dialog" aria-labelledby="reservaModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="reservaModalLabel">Reservar</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            <!-- Modal body content goes here -->
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="id_auto">Auto:</label>
+                        {{ form.auto }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_nombre">Nombre:</label>
+                        {{ form.nombre }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_apellido">Apellido:</label>
+                        {{ form.apellido }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_email">Email:</label>
+                        {{ form.email }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_telefono">Telefono:</label>
+                        {{ form.telefono }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_fecha_retiro">Fecha de Retiro:</label>
+                        {{ form.fecha_retiro }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_fecha_devolucion">Fecha de Devolucion:</label>
+                        {{ form.fecha_devolucion }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_observaciones">Observaciones:</label>
+                        {{ form.observaciones }}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_observaciones">Precio:</label>
+                        {{ form.precio }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Reservar</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Modal gracias -->
+    <div class="modal fade" id="graciasModal" tabindex="-1" role="dialog" aria-labelledby="graciasModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="graciasModalLabel">Gracias</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            <!-- Modal body content goes here -->
+                Su reserva se ha realizado con éxito. ¡Gracias!
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+        </div>
+    </div>
     
     <!-- search section start  -->
-    <!-- <section id="search">
+    <section id="search">
         <div class="container search-block p-5">
 
-            <form class="row">
-                <div class="col-12 col-md-6 col-lg-3 mt-4 mt-lg-0">
-                    <label for="vehicle" class="label-style text-capitalize form-label">Tipo vehículo</label>
-                    <div class="input-group date "> -->
-                        <!-- <input type="text" class="form-control p-3 " id="vehicle" placeholder="Select Car Group" /> -->
-                        <!-- <select class="form-select form-control p-3" id="vehicle" aria-label="Default select example"
-                            style="background-image: none;">
-                            <option selected>Seleccione tipo de vehículo</option>
-                            <option value="1">BMW x3</option>
-                            <option value="2">BMW M2</option>
-                            <option value="3">Ford explorer</option>
-                            <option value="4">Ferrari</option>
-                            <option value="5">Mercedes-Benz</option>
-                            <option value="6">Sports car</option>
-                            <option value="7">Tesla</option>
-                        </select>
-                        <span class="search-icon-position position-absolute p-3 ">
-                            <iconify-icon class="search-icons" icon="solar:bus-outline"></iconify-icon>
-                        </span>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-3 mt-4 mt-lg-0">
-                    <label for="location" class="label-style text-capitalize form-label">Ubicación retiro</label>
-                    <div class="input-group date">
-                        <input type="text" class="form-control p-3 position-relative" id="location"
-                            placeholder="Aeropuerto" />
-                        <span class="search-icon-position position-absolute p-3 ">
-                            <iconify-icon class="search-icons" icon="solar:map-arrow-square-outline"></iconify-icon>
-                        </span>
-
-
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-3 mt-4 mt-lg-0">
+            <form id="buscar-auto-form" class="row">
+                <div class="col-12 col-md-6 col-lg-6 mt-4 mt-lg-0">
                     <label for="pick-up-date" class="label-style text-capitalize form-label">Fecha Retiro</label>
                     <div class="input-group date" id="datepicker1">
                         <input type="text" class="form-control p-3" id="pick-up-date" />
-
                         <span class="input-group-append">
                             <span class="search-icon-position position-absolute p-3">
                                 <iconify-icon class="search-icons" icon="solar:calendar-broken"></iconify-icon>
@@ -505,27 +606,25 @@
 
                     </div>
                 </div>
-                <div class="col-12 col-md-6 col-lg-3 mt-4 mt-lg-0">
+                <div class="col-12 col-md-6 col-lg-6 mt-4 mt-lg-0">
                     <label for="return-date" class="label-style text-capitalize form-label">Fecha Entrega</label>
                     <div class="input-group date" id="datepicker2">
                         <input type="text" class="form-control p-3" id="return-date" />
-
                         <span class="input-group-append">
                             <span class="search-icon-position position-absolute p-3">
                                 <iconify-icon class="search-icons" icon="solar:calendar-broken"></iconify-icon>
                             </span>
                         </span>
-
                     </div>
                 </div>
             </form>
 
             <div class="d-grid gap-2 mt-4">
-                <button class="btn btn-primary " type="button">Buscar Vehículo </button>
+                <button id="buscar-auto" class="btn btn-primary" type="button">Buscar Vehículo</button>
             </div>
         </div>
 
-    </section> -->
+    </section>
 
     <!-- process section start  -->
     <!-- <section id="process">
@@ -1549,6 +1648,90 @@
     })(document.documentElement);
 
     $(window).on('scroll resize', findMiddleElement);
+
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            document.getElementById("buscar-auto").addEventListener("click", function() {
+            // Get the values of pick-up date and return date
+            var pickUpDate = document.getElementById("pick-up-date").value;
+            var returnDate = document.getElementById("return-date").value;
+
+            // Format dates to YYYY-MM-DD
+            var formattedPickUpDate = formatDate(pickUpDate);
+            var formattedReturnDate = formatDate(returnDate);
+
+            // Construct the URL with the formatted values
+            var url = "http://localhost:8000/?start_date=" + formattedPickUpDate + "&end_date=" + formattedReturnDate;
+
+            // Redirect the user to the constructed URL
+            window.location.href = url;
+        });
+
+        // Function to format date to YYYY-MM-DD
+        function formatDate(dateString) {
+            var parts = dateString.split("/");
+            return parts[2] + "-" + parts[0].padStart(2, '0') + "-" + parts[1].padStart(2, '0');
+        }
+            
+        const urlParams = new URLSearchParams(window.location.search);
+        const startDate = urlParams.get('start_date');
+        
+        if ('{{gracias}}' == 'False') {
+            if (startDate) {
+                $('#availabilityModal').modal('show');
+            }
+        }
+        else if ('{{gracias}}' == 'True') {
+            $('#graciasModal').modal('show');
+        }
+
+        
+        $('.reservar').click(function(){
+            function getUrlParameter(name) {
+                name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                var results = regex.exec(location.search);
+                return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+            }
+
+            // Set the value of id_fecha_retiro from the start_date parameter
+            var start_date = getUrlParameter('start_date');
+            $('#id_fecha_retiro').val(start_date);
+
+            // Set the value of id_fecha_devolucion from the end_date parameter
+            var end_date = getUrlParameter('end_date');
+            $('#id_fecha_devolucion').val(end_date);
+
+            var autoId = $(this).attr('id');
+            $('#id_auto').val(autoId);
+            $('#reservaModal').modal('show');
+        });
+
+            //alimentar date picker desde get parameters
+            function getUrlParameter(name) {
+                name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+                var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+                var results = regex.exec(location.search);
+                return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+            };
+
+            // Check if start_date parameter exists
+            var startDateParam = getUrlParameter('start_date');
+            if (startDateParam !== '') {
+                // Set datepicker1 value to start_date
+                $("#datepicker1").datepicker('setDate', new Date(startDateParam));
+            }
+
+            // Check if end_date parameter exists
+            var endDateParam = getUrlParameter('end_date');
+            if (endDateParam !== '') {
+                // Set datepicker2 value to end_date
+                $("#datepicker2").datepicker('setDate', new Date(endDateParam));
+            }
+        });
 
     </script>
 </body>
