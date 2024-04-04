@@ -477,7 +477,7 @@
                         <img src='{{auto.imagen}}' style="width:200px;" class="card-img-top" alt="...">
                         <div class="card-body p-4">
                             <h4 class="card-title">{{auto.marca}} {{auto.modelo}} {{auto.anio}}</h4>
-                            <div>Precio: ${{auto.precio_total}} (${{auto.precio_por_dia}} por día)</div>
+                            <div>Precio: $<span id="precio-{{ auto.id }}" data-precio="{{ auto.precio_total }}">{{ auto.precio_total }}</span> (${{ auto.precio_por_dia }} por día)</div>
                             <div class="card-text">
                                 <ul class="d-flex list-unstyled">
                                     <div class="row">
@@ -502,7 +502,7 @@
             {% endif %}
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="$('#availabilityModal').modal('hide');">Cerrar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="$('#availabilityModal').modal('hide');">Volver</button>
             </div>
         </div>
         </div>
@@ -514,55 +514,67 @@
         <div class="modal-content">
             <div class="modal-header">
             <h5 class="modal-title" id="reservaModalLabel">Reservar</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$('#reservaModal').modal('hide');">
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
             <div class="modal-body">
             <!-- Modal body content goes here -->
-                <form method="post">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="id_auto">Auto:</label>
-                        {{ form.auto }}
+            <p>Vas a reservar {{auto.marca}} {{auto.modelo}} {{auto.anio}} por {{dias}} días (desde {{request.GET.start_date}} hasta {{request.GET.end_date}}) a un valor de {{auto.precio_total}}
+            </p>
+            <form method="post" class="custom-form">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group d-none">
+                            <label for="id_auto">Auto:</label>
+                            {{ form.auto }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_nombre">Nombre:</label>
+                            {{ form.nombre }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_email">Email:</label>
+                            {{ form.email }}
+                        </div>
+                        <div class="form-group d-none">
+                            <label for="id_fecha_retiro">Fecha de Retiro:</label>
+                            {{ form.fecha_retiro }}
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="id_nombre">Nombre:</label>
-                        {{ form.nombre }}
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="id_apellido">Apellido:</label>
+                            {{ form.apellido }}
+                        </div>
+                        <div class="form-group">
+                            <label for="id_telefono">Telefono:</label>
+                            {{ form.telefono }}
+                        </div>
+                        <div class="form-group d-none">
+                            <label for="id_fecha_devolucion">Fecha de Devolucion:</label>
+                            {{ form.fecha_devolucion }}
+                        </div>
+                        <div class="form-group d-none">
+                            <label for="id_precio">Precio:</label>
+                            {{ form.precio }}
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="id_apellido">Apellido:</label>
-                        {{ form.apellido }}
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="id_observaciones">Observaciones:</label>
+                            {{ form.observaciones }}
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="id_email">Email:</label>
-                        {{ form.email }}
-                    </div>
-                    <div class="form-group">
-                        <label for="id_telefono">Telefono:</label>
-                        {{ form.telefono }}
-                    </div>
-                    <div class="form-group">
-                        <label for="id_fecha_retiro">Fecha de Retiro:</label>
-                        {{ form.fecha_retiro }}
-                    </div>
-                    <div class="form-group">
-                        <label for="id_fecha_devolucion">Fecha de Devolucion:</label>
-                        {{ form.fecha_devolucion }}
-                    </div>
-                    <div class="form-group">
-                        <label for="id_observaciones">Observaciones:</label>
-                        {{ form.observaciones }}
-                    </div>
-                    <div class="form-group">
-                        <label for="id_observaciones">Precio:</label>
-                        {{ form.precio }}
-                    </div>
+                </div>
+                <div class="text-center">
                     <button type="submit" class="btn btn-primary">Reservar</button>
-                </form>
+                </div>
+            </form>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="$('#reservaModal').modal('hide');">Volver</button>
             </div>
         </div>
         </div>
@@ -1705,8 +1717,12 @@
             var end_date = getUrlParameter('end_date');
             $('#id_fecha_devolucion').val(end_date);
 
+            var precioId = $('#precio-' + $(this).attr('id')).data('precio');
+            $('#id_precio').val(precioId);
+
             var autoId = $(this).attr('id');
             $('#id_auto').val(autoId);
+
             $('#reservaModal').modal('show');
         });
 

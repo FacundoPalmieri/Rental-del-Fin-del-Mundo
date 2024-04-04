@@ -974,6 +974,10 @@ iconify-icon.property-icon {
   z-index: 9999999999;
 }
 
+#buscar-auto {
+  z-index: 99999999999999;
+}
+
 .modal-content {
   min-height: 90vh;
   max-height: fit-content;
@@ -1020,4 +1024,41 @@ iconify-icon.property-icon {
   .busqueda .card-text {
       column-count: 1; /* Adjust to one column on even smaller screens */
   }
+}
+
+.custom-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.custom-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.custom-form label {
+    font-weight: bold;
+}
+
+.custom-form input[type="text"],
+.custom-form input[type="email"],
+.custom-form textarea {
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.custom-form input[type="text"]:focus,
+.custom-form input[type="email"]:focus,
+.custom-form textarea:focus {
+    outline: none;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.custom-form button[type="submit"] {
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    cursor: pointer;
 }
