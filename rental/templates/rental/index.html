@@ -514,14 +514,17 @@
         <div class="modal-content">
             <div class="modal-header">
             <h5 class="modal-title" id="reservaModalLabel">Reservar</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$('#reservaModal').modal('hide');">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="$('#availabilityModal').modal('show');$('#reservaModal').modal('hide');">
                 <span aria-hidden="true">&times;</span>
             </button>
             </div>
             <div class="modal-body">
             <!-- Modal body content goes here -->
-            <p>Vas a reservar {{auto.marca}} {{auto.modelo}} {{auto.anio}} por {{dias}} días (desde {{request.GET.start_date}} hasta {{request.GET.end_date}}) a un valor de {{auto.precio_total}}
-            </p>
+            {% if autos_disponbiles %}
+                {% for auto in autos_disponbiles %}
+                    <p>Vas a reservar {{auto.marca}} {{auto.modelo}} {{auto.anio}} por {{dias}} días (desde {{request.GET.start_date}} hasta {{request.GET.end_date}}) a un valor de {{auto.precio_total}}</p>
+                {% endfor %}
+            {% endif %}
             <form method="post" class="custom-form">
                 {% csrf_token %}
                 <div class="row">
@@ -574,7 +577,7 @@
             </form>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="$('#reservaModal').modal('hide');">Volver</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="$('#availabilityModal').modal('show');$('#reservaModal').modal('hide');">Volver</button>
             </div>
         </div>
         </div>
@@ -1724,6 +1727,7 @@
             $('#id_auto').val(autoId);
 
             $('#reservaModal').modal('show');
+            $('#availabilityModal').modal('hide');
         });
 
             //alimentar date picker desde get parameters
