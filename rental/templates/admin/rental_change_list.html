@@ -1,0 +1,28 @@
+{% extends 'admin/base_site.html' %}
+{% block content %}
+    {{ block.super }}
+    <div id='calendar'></div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            
+            var rentals_json = '{{ rentals_json|safe }}';
+            var events = JSON.parse(rentals_json);
+            
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                events: events,
+                eventClick: function(info) {
+                    info.jsEvent.preventDefault(); // don't let the browser navigate
+                    window.location = info.event.url;
+                }
+            });
+
+            calendar.render();
+        });
+    </script>
+
+    <!-- FullCalendar JavaScript -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.11/index.global.min.js'></script>
+{% endblock %}
