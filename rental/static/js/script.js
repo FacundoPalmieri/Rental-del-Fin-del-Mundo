@@ -41,16 +41,6 @@
     yearlyLabel.classList.add('label-color'); // Set initial accent color to yearly label
     monthlyLabel.classList.add('label-color'); 
 
-    switchInput.addEventListener('change', function () {
-      if (this.checked) {
-        yearlyLabel.classList.add('label-color'); // Add color to label
-      } else {
-        monthlyLabel.classList.add('label-color'); // Add color to label
-      }
-    });
-
-    switchInput.click()
-
     contentElements.forEach(function (element) {
       if (element.classList.contains('yearly')) {
         element.style.display = 'block';
@@ -82,9 +72,7 @@
       }
     });    // Add event listener to the switch input
 
-
-
-
+    switchInput.click()
 
     // rental swiper
     var rentalSwiper = new Swiper(".rental-swiper", {

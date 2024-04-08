@@ -520,11 +520,7 @@
             </div>
             <div class="modal-body">
             <!-- Modal body content goes here -->
-            {% if autos_disponbiles %}
-                {% for auto in autos_disponbiles %}
-                    <p>Vas a reservar {{auto.marca}} {{auto.modelo}} {{auto.anio}} por {{dias}} días (desde {{request.GET.start_date}} hasta {{request.GET.end_date}}) a un valor de {{auto.precio_total}}</p>
-                {% endfor %}
-            {% endif %}
+            <p>Vas a reservar <span id="auto-id"></span> por {{dias}} días (desde {{request.GET.start_date}} hasta {{request.GET.end_date}}) a un valor de {{auto.precio_total}}</p>
             <form method="post" class="custom-form">
                 {% csrf_token %}
                 <div class="row">
@@ -1725,6 +1721,7 @@
 
             var autoId = $(this).attr('id');
             $('#id_auto').val(autoId);
+            $('#auto-id').val(autoId);
 
             $('#reservaModal').modal('show');
             $('#availabilityModal').modal('hide');
