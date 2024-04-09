@@ -2,7 +2,13 @@
 {% block content %}
     {{ block.super }}
     <div id='calendar'></div>
-    
+    <style>
+        .fc-event {
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: .3em;
+        }
+    </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
@@ -12,11 +18,24 @@
             
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
+                locale: 'es',
+                buttonText: {
+                    today: 'Hoy',
+                    month: 'Mes',
+                    week: 'Semana',
+                    day: 'Día',
+                    list: 'Lista'
+                },
+                monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                monthNamesShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+                dayNames: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
                 events: events,
                 eventClick: function(info) {
                     info.jsEvent.preventDefault(); // don't let the browser navigate
                     window.location = info.event.url;
-                }
+                },
+                eventBackgroundColor: 'color',  // Set the color field as background color
             });
 
             calendar.render();

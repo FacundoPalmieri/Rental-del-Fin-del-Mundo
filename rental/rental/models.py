@@ -1,6 +1,6 @@
 
 from django.db import models
-    
+from colorfield.fields import ColorField
 class Plan(models.Model):
     class Meta:
         verbose_name_plural = 'planes'
@@ -61,6 +61,7 @@ class Rental(models.Model):
     devuelto = models.BooleanField(default=False)
     observaciones = models.TextField(blank=True, null=True)
     precio = models.DecimalField(max_digits=50, decimal_places=3)
+    color = ColorField(default='#89CFF0')
 
     def __str__(self):
         return f"{self.auto} / {self.nombre} {self.apellido}"
