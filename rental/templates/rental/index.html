@@ -151,7 +151,7 @@
     <nav class="navbar navbar-expand-lg  navbar-light container-fluid py-3 position-fixed ">
         <div class="container-fluid">
         <!-- <div class="container-sm"> -->
-            <a class="navbar-brand" href="index.html"><img src={% static 'images/Logo fondo transparente.png' %} alt="logo"></a>
+            <a class="navbar-brand" href="."><img src={% static 'images/Logo fondo transparente.png' %} alt="logo"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
                 aria-controls="offcanvasNavbar">
                 <span class="navbar-toggler-icon"></span>
@@ -167,6 +167,9 @@
                     <ul class="navbar-nav align-items-center justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
                             <a class="nav-link active px-3" aria-current="page" href="#">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-3 anchor-link" href="#search">Reservar</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link px-3 anchor-link" href="#rental">Flota</a>
@@ -450,7 +453,7 @@
                     <h1 class="">Rental  <span class="text-primary">Del Fin del Mundo  </span> </h1>
                     <h2 class="hero-paragraph">Comienza la aventura.</h2>
                 </div>
-                <a href="https://wa.me/5492901647651" class="btn btn-primary mt-2 contactenos">¡Contactanos! </a>
+                <a href="#search" class="btn btn-primary mt-2 contactenos anchor-link">Reservar</a>
             </div>
         </div>
     </section>
@@ -603,7 +606,7 @@
     <!-- search section start  -->
     <section id="search">
         <div class="container search-block p-5">
-
+            <h2 class=" text-center my-5">Buscar <span class="text-primary">fechas</span> </h2>
             <form id="buscar-auto-form" class="row">
                 <div class="col-12 col-md-6 col-lg-6 mt-4 mt-lg-0">
                     <label for="pick-up-date" class="label-style text-capitalize form-label">Fecha Retiro</label>
@@ -892,7 +895,7 @@
 
     <!-- pricing section start  -->
     <section id="pricing">
-        <div class=" container  py-5 my-5">
+        <div class="container py-5 my-5">
             <h2 class=" text-center my-5">Planes <span class="text-primary">disponibles 24´</span> </h2>
 
             <div class="d-flex justify-content-center">
@@ -1018,10 +1021,9 @@
 
     <!-- services section start  -->
     <section id="services">
-
-        <div class="container  py-5 my-5">
-            <div class="row py-5 ">
-                <div class="pb-5  col-10 col-sm-8 col-lg-6">
+        <div class="container py-5 my-5">
+            <div class="row py-5">
+                <div class="pb-5 col-10 col-sm-8 col-lg-6">
                     <h2 class="">Viví tu experiencia en el<span class="text-primary"> Fin del Mundo</span> con la mejor atención y servicio. </h2>
                 </div>       
             </div>
@@ -1501,11 +1503,11 @@
 
  
      <!-- Ubicación section start  -->
-    <section id= "ubicacion">
-        <div class="container my-5">
+    <section id="ubicacion">
+        <div class="container my-5 py-5">
             <div class="row">
                 <div class="text-center" style="margin-bottom: 30px;">
-                    <h2 class="mb-0">Podes <span class="text-primary">Encontrarnos</span> ACÁ</h2>        
+                    <h2 class="mb-0 my-5">Podes <span class="text-primary">Encontrarnos</span> ACÁ</h2>        
                 </div>
                 <div class="text-center" style="margin-bottom: 20px;">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2299.593325866875!2d-68.30273912369792!3d-54.80469018087929!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xbc4c23aecef83379%3A0xff6fc1f0d957c3a7!2sRental%20del%20Fin%20del%20Mundo!5e0!3m2!1ses-419!2sar!4v1710885229757!5m2!1ses-419!2sar" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
