@@ -363,6 +363,16 @@ section#hero {
   filter: drop-shadow(0px 0px 15px white);
 }
 
+.contacto {
+  border-top: 1px solid #dddddd;
+  padding: 2em;
+  margin: 0;
+}
+
+.mensaje-contacto {
+  text-align: center;
+}
+
 .contactenos {
   width: 10em;
   margin: 0 auto;
@@ -992,14 +1002,20 @@ iconify-icon.property-icon {
 
 .busqueda {
   padding-left: 0;
+  margin-bottom: 0;
 }
 
 .busqueda .row>li {
   padding-right: 1em;
 }
 
-.busqueda .card {
+.busqueda .card, .modal-body {
   align-items: center;
+  display: flex;
+  flex-direction: row;
+  border-top: 1px solid #dddddd;
+  background: linear-gradient(transparent, transparent, transparent, #00000012);
+  padding: 0 2em;
 }
 
 .busqueda div {
@@ -1010,6 +1026,11 @@ iconify-icon.property-icon {
   column-count: 3; /* Default number of columns */
 }
 
+.busqueda p {
+    margin-bottom: 0;
+    text-align: right;
+}
+
 .busqueda button {
   padding: 8px;
 }
@@ -1018,21 +1039,22 @@ iconify-icon.property-icon {
   .busqueda .card-text {
       column-count: 2; /* Adjust to two columns on smaller screens */
   }
+  .busqueda .card {
+    flex-direction: column;
+  }
 }
 
 @media (max-width: 576px) {
   .busqueda .card-text {
-      column-count: 1; /* Adjust to one column on even smaller screens */
+      column-count: 2; /* Adjust to one column on even smaller screens */
+  }
+  .busqueda button {
+    width: 100%;
   }
 }
 
 .custom-form {
-    max-width: 600px;
     margin: 0 auto;
-}
-
-.custom-form .form-group {
-    margin-bottom: 1.5rem;
 }
 
 .custom-form label {
@@ -1061,4 +1083,20 @@ iconify-icon.property-icon {
     padding: 0.375rem 0.75rem;
     font-size: 1rem;
     cursor: pointer;
+}
+
+.modal-body {
+  padding: unset;
+  border-bottom: 0px solid red;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.modal-body p {
+  padding-left: 1em;
+}
+
+.contenedor-btn-reservar {
+  text-align: center;
+  margin-bottom: 2.5em;
 }

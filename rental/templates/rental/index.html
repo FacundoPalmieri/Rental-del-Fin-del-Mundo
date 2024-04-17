@@ -470,15 +470,18 @@
             </div>
             <div class="modal-body">
             <!-- Modal body content goes here -->
-            Busacndo rental por {{dias}} dias...<br>
-            Desde {{request.GET.start_date}} hasta {{request.GET.end_date}}.
             {% if autos_disponbiles %}
                 <ul class="busqueda">
+                    <div>
+                        Buscando rental por {{dias}} dias...
+                        <br>
+                        Desde {{request.GET.start_date}} hasta {{request.GET.end_date}}
+                    </div>
                     {% for auto in autos_disponbiles %}
                     
                     <div class="card">
-                        <img src='{{auto.imagen}}' style="width:200px;" class="card-img-top" alt="...">
-                        <div class="card-body p-4">
+                        <p class="mb-0"><img src='{{auto.imagen}}' style="width:200px;" class="card-img-top" alt="..."></p>
+                        <div class="card-body">
                             <h4 class="card-title">{{auto.marca}} {{auto.modelo}} {{auto.anio}}</h4>
                             <div>Precio: $<span id="precio-{{ auto.id }}" data-precio="{{ auto.precio_total }}">{{ auto.precio_total }}</span> (${{ auto.precio_por_dia }} por día)</div>
                             <div class="card-text">
@@ -493,9 +496,7 @@
                                     </div>                        
                                 </ul>
                             </div>
-                            <button id="{{auto.id}}" class="btn btn-primary mt-2 reservar">¡Lo quiero!</button>
-
-                            <hr>
+                            <p><button id="{{auto.id}}" class="btn btn-primary mt-2 reservar">¡Lo quiero!</button></p>
                         </div>
                     </div>
                     {% endfor %}
@@ -523,10 +524,10 @@
             </div>
             <div class="modal-body">
             <!-- Modal body content goes here -->
-            <p>Vas a reservar <span id="auto-id"></span> por {{dias}} días (desde {{request.GET.start_date}} hasta {{request.GET.end_date}}) a un valor de {{auto.precio_total}}</p>
             <form method="post" class="custom-form">
+                <div class="mensaje-contacto">Vas a reservar <span id="auto-id"></span> por {{dias}} días (desde {{request.GET.start_date}} hasta {{request.GET.end_date}}) a un valor de {{auto.precio_total}}</div>
                 {% csrf_token %}
-                <div class="row">
+                <div class="row contacto">
                     <div class="col-md-6">
                         <div class="form-group d-none">
                             <label for="id_auto">Auto:</label>
@@ -570,7 +571,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-center">
+                <div class="contenedor-btn-reservar">
                     <button type="submit" class="btn btn-primary">Reservar</button>
                 </div>
             </form>
