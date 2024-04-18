@@ -1720,7 +1720,9 @@
             $('#id_fecha_devolucion').val(end_date);
 
             var precioId = $('#precio-' + $(this).attr('id')).data('precio');
-            $('#id_precio').val(precioId);
+            // Remove commas from the value
+            precioId = precioId.replace(',', '');
+            $('#id_precio').val(parseFloat(precioId));
 
             var autoId = $(this).attr('id');
             $('#id_auto').val(autoId);

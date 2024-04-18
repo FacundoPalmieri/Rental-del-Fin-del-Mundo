@@ -11,6 +11,7 @@ class RentalForm(forms.ModelForm):
         
     def clean_color(self):
         color = self.cleaned_data['color']
-        if not color.startswith('#'):
-            color = '#' + color
-        return color
+        if color is not None:
+            if not color.startswith('#'):
+                color = '#' + color
+            return color

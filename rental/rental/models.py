@@ -60,8 +60,8 @@ class Rental(models.Model):
     fecha_devolucion = models.DateField(blank=True, null=True)
     devuelto = models.BooleanField(default=False)
     observaciones = models.TextField(blank=True, null=True)
-    precio = models.DecimalField(max_digits=50, decimal_places=3)
-    color = ColorField(default='#89CFF0')
+    precio = models.DecimalField(max_digits=50)
+    color = ColorField(default='#89CFF0', blank=True, null=True)
 
     def __str__(self):
         return f"{self.auto} / {self.nombre} {self.apellido}"

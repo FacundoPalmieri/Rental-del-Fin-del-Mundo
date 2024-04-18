@@ -1010,7 +1010,6 @@ iconify-icon.property-icon {
 }
 
 .busqueda .card, .modal-body {
-  align-items: center;
   display: flex;
   flex-direction: row;
   border-top: 1px solid #dddddd;
