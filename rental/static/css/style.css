@@ -984,10 +984,6 @@ iconify-icon.property-icon {
   z-index: 9999999999;
 }
 
-#buscar-auto {
-  z-index: 999999999;
-}
-
 .modal-content {
   min-height: 90vh;
   max-height: fit-content;
