@@ -13,15 +13,8 @@ class Plan(models.Model):
         ('Pro','Pro')
     )
 
-    TRIMESTRE = (
-        ('Marzo/Abril/Mayo','Marzo/Abril/Mayo'),
-        ('Junio/Julio/Agosto','Junio/Julio/Agosto'),
-        ('Septiembre/Octubre/Noviembre','Septiembre/Octubre/Noviembre'),
-        ('Diciembre/Enero/Febrero','Diciembre/Enero/Febrero')
-    )
-
     tipo = models.CharField(choices=TIPO, max_length=50)
-    un_dia = models.DecimalField(max_digits=50, decimal_places=3)
+    enero  = models.DecimalField(max_digits=50, decimal_places=3)
     febrero = models.DecimalField(max_digits=50, decimal_places=3)
     marzo = models.DecimalField(max_digits=50, decimal_places=3)
     abril = models.DecimalField(max_digits=50, decimal_places=3)
@@ -35,26 +28,9 @@ class Plan(models.Model):
     diciembre = models.DecimalField(max_digits=50, decimal_places=3)
 
     hora_extra = models.DecimalField(max_digits=50, decimal_places=3)
-    trimestre = models.CharField(choices=TRIMESTRE, max_length=50)
-
-    # Add discount percentages for each type
-    discount_percentages = {
-        'Basico': {'dos_a_tres': Decimal('7.69'), 'cuatro_a_seis': Decimal('10.26'), 'siete_o_mas': Decimal('12.82')},
-        'Estandar': {'dos_a_tres': Decimal('6.98'), 'cuatro_a_seis': Decimal('9.30'), 'siete_o_mas': Decimal('11.63')},
-        'Pro': {'dos_a_tres': Decimal('4.55'), 'cuatro_a_seis': Decimal('6.06'), 'siete_o_mas': Decimal('7.58')}
-    }
-
-    def dos_a_tres(self):
-        return round(self.un_dia * (1 - self.discount_percentages[self.tipo]['dos_a_tres'] / Decimal('100')), 3)
-
-    def cuatro_a_seis(self):
-        return round(self.un_dia * (1 - self.discount_percentages[self.tipo]['cuatro_a_seis'] / Decimal('100')), 3)
-
-    def siete_o_mas(self):
-        return round(self.un_dia * (1 - self.discount_percentages[self.tipo]['siete_o_mas'] / Decimal('100')), 3)
 
     def __str__(self):
-        return f"{self.tipo} {self.trimestre}"
+        return f"{self.tipo}"
 
 class Auto(models.Model):
     CAJA = (
