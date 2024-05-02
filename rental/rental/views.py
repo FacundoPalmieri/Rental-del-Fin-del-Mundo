@@ -54,6 +54,27 @@ def index(request):
         elif difference.days >= 7:
             dias = 'siete_o_mas'
 
+        months_spanish = {
+            1: 'Enero',
+            2: 'Febrero',
+            3: 'Marzo',
+            4: 'Abril',
+            5: 'Mayo',
+            6: 'Junio',
+            7: 'Julio',
+            8: 'Agosto',
+            9: 'Septiembre',
+            10: 'Octubre',
+            11: 'Noviembre',
+            12: 'Diciembre'
+        }
+
+        month_number = start_date.month
+
+        month = months_spanish[month_number]
+
+        print('mes', month)
+
         # Serialize available autos data
         available_autos_data = [
             {

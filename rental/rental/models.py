@@ -22,6 +22,18 @@ class Plan(models.Model):
 
     tipo = models.CharField(choices=TIPO, max_length=50)
     un_dia = models.DecimalField(max_digits=50, decimal_places=3)
+    febrero = models.DecimalField(max_digits=50, decimal_places=3)
+    marzo = models.DecimalField(max_digits=50, decimal_places=3)
+    abril = models.DecimalField(max_digits=50, decimal_places=3)
+    mayo = models.DecimalField(max_digits=50, decimal_places=3)
+    junio = models.DecimalField(max_digits=50, decimal_places=3)
+    julio = models.DecimalField(max_digits=50, decimal_places=3)
+    agosto = models.DecimalField(max_digits=50, decimal_places=3)
+    septiembre = models.DecimalField(max_digits=50, decimal_places=3)
+    octubre = models.DecimalField(max_digits=50, decimal_places=3)
+    noviembre = models.DecimalField(max_digits=50, decimal_places=3)
+    diciembre = models.DecimalField(max_digits=50, decimal_places=3)
+
     hora_extra = models.DecimalField(max_digits=50, decimal_places=3)
     trimestre = models.CharField(choices=TRIMESTRE, max_length=50)
 
