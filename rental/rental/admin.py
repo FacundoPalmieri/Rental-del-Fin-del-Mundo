@@ -28,31 +28,13 @@ class PlanAdmin(admin.ModelAdmin):
 
 #ROUND UP
         # Loop through each month and calculate the discounted prices
-#        for month in Plan._meta.get_fields():
-#            if month.name in ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']:
-#                month_name = month.name
-#                un_discounted_price = getattr(obj, month_name)
-#                discounts_str = ''
-#                for discount_type, percentage in discount_percentages[obj.tipo].items():
-#                    discounted_price = math.ceil(un_discounted_price * (1 - percentage / Decimal('100')))
-#                    discount_description = discount_descriptions.get(discount_type, discount_type)
-#                    discounts_str += f"{discount_description}: {discounted_price}<br>"
-#                discounted_prices_dict[month_name] = discounts_str
-
-        # Format the discounted prices as HTML
-#        discounted_prices_html = ''
-#        for month, discounts in discounted_prices_dict.items():
-#            discounted_prices_html += f"{month}:<br>{discounts}<br>"
-
-#        return format_html(discounted_prices_html)
-
         for month in Plan._meta.get_fields():
             if month.name in ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']:
                 month_name = month.name
                 un_discounted_price = getattr(obj, month_name)
                 discounts_str = ''
                 for discount_type, percentage in discount_percentages[obj.tipo].items():
-                    discounted_price = f"${round(un_discounted_price * (1 - percentage / Decimal('100')))}.000"
+                    discounted_price = f"${math.ceil(un_discounted_price * (1 - percentage / Decimal('100')))}.000"
                     discount_description = discount_descriptions.get(discount_type, discount_type)
                     discounts_str += f"{discount_description}: {discounted_price}<br>"
                 discounted_prices_dict[month_name] = discounts_str
@@ -63,6 +45,24 @@ class PlanAdmin(admin.ModelAdmin):
             discounted_prices_html += f"{month}:<br>{discounts}<br>"
 
         return format_html(discounted_prices_html)
+
+#        for month in Plan._meta.get_fields():
+#            if month.name in ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre']:
+#                month_name = month.name
+#                un_discounted_price = getattr(obj, month_name)
+#                discounts_str = ''
+#                for discount_type, percentage in discount_percentages[obj.tipo].items():
+#                    discounted_price = f"${round(un_discounted_price * (1 - percentage / Decimal('100')))}.000"
+#                    discount_description = discount_descriptions.get(discount_type, discount_type)
+#                    discounts_str += f"{discount_description}: {discounted_price}<br>"
+#                discounted_prices_dict[month_name] = discounts_str
+
+        # Format the discounted prices as HTML
+#        discounted_prices_html = ''
+#        for month, discounts in discounted_prices_dict.items():
+#            discounted_prices_html += f"{month}:<br>{discounts}<br>"
+
+#        return format_html(discounted_prices_html)
 
     # Set the description for the column
     descuentos.short_description = 'Descuentos'
