@@ -3,6 +3,8 @@ from django.http import JsonResponse
 from .models import Auto, Rental, Plan
 from datetime import datetime, timedelta
 from .forms import RentalForm
+from decimal import Decimal
+
 def index(request):
 
     #http://localhost:8000?start_date=2024-04-03&end_date=2024-04-10
@@ -67,8 +69,8 @@ def index(request):
                 'baul': auto.baul,
                 'caja': auto.caja,
                 'plan': auto.plan,
-                'precio_total': (getattr(Plan.objects.get(tipo=auto.plan, trimestre='Marzo/Abril/Mayo'), dias) * difference.days),
-                'precio_por_dia': getattr(Plan.objects.get(tipo=auto.plan, trimestre='Marzo/Abril/Mayo'), dias),
+                'precio_total': f"{round(Decimal(getattr(Plan.objects.get(tipo=auto.plan, trimestre='Marzo/Abril/Mayo'), dias)()) * Decimal(str(difference.days)))}.000" if difference != timedelta(days=1) else f"{getattr(Plan.objects.get(tipo=auto.plan, trimestre='Marzo/Abril/Mayo'), dias) * difference.days}",
+                'precio_por_dia': f"{round(Decimal(getattr(Plan.objects.get(tipo=auto.plan, trimestre='Marzo/Abril/Mayo'), dias)()))}.000" if difference != timedelta(days=1) else f"{getattr(Plan.objects.get(tipo=auto.plan, trimestre='Marzo/Abril/Mayo'), dias)}"
                 # Add other fields you want to include
             }
             for auto in available_autos
