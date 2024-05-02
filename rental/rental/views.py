@@ -99,6 +99,9 @@ def index(request):
                 'plan': auto.plan,
                 'precio_total': f"{math.ceil((Decimal(getattr(Plan.objects.get(tipo=auto.plan), month)) * Decimal(str(difference.days))) * (1 - discount_percentages[auto.plan][dias] / Decimal('100')))}.000" if difference != timedelta(days=1) else f"{getattr(Plan.objects.get(tipo=auto.plan), month)}",
                 'precio_por_dia': f"{math.ceil(Decimal(getattr(Plan.objects.get(tipo=auto.plan), month))* (1 - discount_percentages[auto.plan][dias] / Decimal('100')))}.000" if difference != timedelta(days=1) else f"{getattr(Plan.objects.get(tipo=auto.plan), month)}"
+                # ROUND NORMAL    
+                #'precio_total': f"{round((Decimal(getattr(Plan.objects.get(tipo=auto.plan, trimestre='Marzo/Abril/Mayo'), month)) * Decimal(str(difference.days))) * (1 - discount_percentages[auto.plan][dias] / Decimal('100')))}.000" if difference != timedelta(days=1) else f"{getattr(Plan.objects.get(tipo=auto.plan, trimestre='Marzo/Abril/Mayo'), month) * difference.days * (1 - discount_percentages[auto.plan][dias] / Decimal('100'))}",
+                #'precio_por_dia': f"{round(Decimal(getattr(Plan.objects.get(tipo=auto.plan, trimestre='Marzo/Abril/Mayo'), month))* (1 - discount_percentages[auto.plan][dias] / Decimal('100')))}.000" if difference != timedelta(days=1) else f"{getattr(Plan.objects.get(tipo=auto.plan, trimestre='Marzo/Abril/Mayo'), month)}"
                 # Add other fields you want to include
             }
             for auto in available_autos
