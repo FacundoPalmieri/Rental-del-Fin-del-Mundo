@@ -76,10 +76,16 @@ def index(request):
 
         print('mes', month)
 
+#        discount_percentages = {
+#            'Basico': {'dos_a_tres': Decimal('7.69'), 'cuatro_a_seis': Decimal('10.26'), 'siete_o_mas': Decimal('12.82')},
+#            'Estandar': {'dos_a_tres': Decimal('6.98'), 'cuatro_a_seis': Decimal('9.30'), 'siete_o_mas': Decimal('11.63')},
+#            'Pro': {'dos_a_tres': Decimal('4.55'), 'cuatro_a_seis': Decimal('6.06'), 'siete_o_mas': Decimal('7.58')}
+#        }
+
         discount_percentages = {
-            'Basico': {'dos_a_tres': Decimal('7.69'), 'cuatro_a_seis': Decimal('10.26'), 'siete_o_mas': Decimal('12.82')},
-            'Estandar': {'dos_a_tres': Decimal('6.98'), 'cuatro_a_seis': Decimal('9.30'), 'siete_o_mas': Decimal('11.63')},
-            'Pro': {'dos_a_tres': Decimal('4.55'), 'cuatro_a_seis': Decimal('6.06'), 'siete_o_mas': Decimal('7.58')}
+            'Basico': {'dos_a_tres': Decimal('6.69'), 'cuatro_a_seis': Decimal('9.26'), 'siete_o_mas': Decimal('10.82')},
+            'Estandar': {'dos_a_tres': Decimal('6.98'), 'cuatro_a_seis': Decimal('8.30'), 'siete_o_mas': Decimal('11.63')},
+            'Pro': {'dos_a_tres': Decimal('4.55'), 'cuatro_a_seis': Decimal('7.06'), 'siete_o_mas': Decimal('7.58')}
         }
 
         # Serialize available autos data
@@ -97,8 +103,10 @@ def index(request):
                 'baul': auto.baul,
                 'caja': auto.caja,
                 'plan': auto.plan,
-                'precio_total': f"{math.ceil((Decimal(getattr(Plan.objects.get(tipo=auto.plan), month)) * Decimal(str(difference.days))) * (1 - discount_percentages[auto.plan][dias] / Decimal('100')))}.000" if difference != timedelta(days=1) else f"{getattr(Plan.objects.get(tipo=auto.plan), month)}",
-                'precio_por_dia': f"{math.ceil(Decimal(getattr(Plan.objects.get(tipo=auto.plan), month))* (1 - discount_percentages[auto.plan][dias] / Decimal('100')))}.000" if difference != timedelta(days=1) else f"{getattr(Plan.objects.get(tipo=auto.plan), month)}"
+                'precio_total': f"{round((Decimal(getattr(Plan.objects.get(tipo=auto.plan), month)) * (1 - discount_percentages[auto.plan][dias] / Decimal('100'))) * Decimal(str(difference.days)))}.000",
+                'precio_por_dia': f"{round(Decimal(getattr(Plan.objects.get(tipo=auto.plan), month))* (1 - discount_percentages[auto.plan][dias] / Decimal('100')))}.000" if difference != timedelta(days=1) else f"{getattr(Plan.objects.get(tipo=auto.plan), month)}"
+#                'precio_total': f"{math.ceil((Decimal(getattr(Plan.objects.get(tipo=auto.plan), month)) * Decimal(str(difference.days))) * (1 - discount_percentages[auto.plan][dias] / Decimal('100')))}.000" if difference != timedelta(days=1) else f"{getattr(Plan.objects.get(tipo=auto.plan), month)}",
+#                'precio_por_dia': f"{math.ceil(Decimal(getattr(Plan.objects.get(tipo=auto.plan), month))* (1 - discount_percentages[auto.plan][dias] / Decimal('100')))}.000" if difference != timedelta(days=1) else f"{getattr(Plan.objects.get(tipo=auto.plan), month)}"
                 # ROUND NORMAL    
                 #'precio_total': f"{round((Decimal(getattr(Plan.objects.get(tipo=auto.plan, trimestre='Marzo/Abril/Mayo'), month)) * Decimal(str(difference.days))) * (1 - discount_percentages[auto.plan][dias] / Decimal('100')))}.000" if difference != timedelta(days=1) else f"{getattr(Plan.objects.get(tipo=auto.plan, trimestre='Marzo/Abril/Mayo'), month) * difference.days * (1 - discount_percentages[auto.plan][dias] / Decimal('100'))}",
                 #'precio_por_dia': f"{round(Decimal(getattr(Plan.objects.get(tipo=auto.plan, trimestre='Marzo/Abril/Mayo'), month))* (1 - discount_percentages[auto.plan][dias] / Decimal('100')))}.000" if difference != timedelta(days=1) else f"{getattr(Plan.objects.get(tipo=auto.plan, trimestre='Marzo/Abril/Mayo'), month)}"

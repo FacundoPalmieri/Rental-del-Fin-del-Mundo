@@ -12,9 +12,9 @@ class PlanAdmin(admin.ModelAdmin):
 
     def descuentos(self, obj):
         discount_percentages = {
-            'Basico': {'dos_a_tres': Decimal('7.69'), 'cuatro_a_seis': Decimal('10.26'), 'siete_o_mas': Decimal('12.82')},
-            'Estandar': {'dos_a_tres': Decimal('6.98'), 'cuatro_a_seis': Decimal('9.30'), 'siete_o_mas': Decimal('11.63')},
-            'Pro': {'dos_a_tres': Decimal('4.55'), 'cuatro_a_seis': Decimal('6.06'), 'siete_o_mas': Decimal('7.58')}
+            'Basico': {'dos_a_tres': Decimal('6.69'), 'cuatro_a_seis': Decimal('9.26'), 'siete_o_mas': Decimal('10.82')},
+            'Estandar': {'dos_a_tres': Decimal('6.98'), 'cuatro_a_seis': Decimal('8.30'), 'siete_o_mas': Decimal('11.63')},
+            'Pro': {'dos_a_tres': Decimal('4.55'), 'cuatro_a_seis': Decimal('7.06'), 'siete_o_mas': Decimal('7.58')}
         }
 
         discount_descriptions = {
