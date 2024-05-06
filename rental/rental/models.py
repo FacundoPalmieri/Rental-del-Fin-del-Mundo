@@ -33,10 +33,12 @@ class Plan(models.Model):
         return f"{self.tipo}"
 
 class Auto(models.Model):
+
     CAJA = (
         ('Automatica','Automatica'),
         ('Manual','Manual')
     )
+
     marca = models.CharField(max_length=50)
     modelo = models.CharField(max_length=50)
     anio = models.PositiveIntegerField()    
@@ -54,6 +56,14 @@ class Auto(models.Model):
         return f"{self.marca} {self.modelo} {self.color}"
 
 class Rental(models.Model):
+
+    COLOR_PALETTE = [
+        ("#549ccc", "azul", ),
+        ("#59af80", "verde", ),
+        ("#de583d", "naranja", ),
+        ("#aa61bb", "violeta", ),             
+    ]
+        
     auto = models.ForeignKey(Auto, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
@@ -64,7 +74,7 @@ class Rental(models.Model):
     devuelto = models.BooleanField(default=False)
     observaciones = models.TextField(blank=True, null=True)
     precio = models.DecimalField(max_digits=50, decimal_places=3)
-    color = ColorField(default='#89CFF0', blank=True, null=True)
+    color = ColorField(default='#89CFF0', blank=True, null=True, samples=COLOR_PALETTE)
 
     def __str__(self):
         return f"{self.auto} / {self.nombre} {self.apellido}"
