@@ -821,7 +821,6 @@ section#action {
 
 /*---- footer section style start ----*/
 
-
 .social-link {
   display: flex;
   align-items: center;
@@ -832,16 +831,12 @@ section#action {
   font-size: 24px;
   width: 20px; /* Establece un ancho fijo para los íconos */
   margin-right: 10px; /* Ajusta el margen derecho según sea necesario */
-  
+  color: var(--accent-color); /* Define el color de los íconos directamente */
 }
 
-.social-link-icon.active {
-  color: var(--accent-color);
-}
-
-/*--Iconos del fianl del footer--*/
+/*--Iconos del final del footer--*/
 .custom-icon {
-  font-size: 15px;
+  font-size: 30px;
 }
 
 .footer-nav {
@@ -851,7 +846,7 @@ section#action {
 
 footer {
   flex-direction: column;
-  margin-top: 30px;
+  margin-top: 0px;
 }
 
 /*--------------------------------------------------------------
@@ -1095,3 +1090,4 @@ iconify-icon.property-icon {
   text-align: center;
   margin-bottom: 2.5em;
 }
+

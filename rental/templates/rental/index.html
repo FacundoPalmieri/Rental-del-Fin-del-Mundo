@@ -13,7 +13,8 @@
     src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
-<script src="{% static 'js/iconify.min.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+<script src="{% static 'js/iconify-icon.min.js' %}"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 
@@ -129,10 +130,16 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&display=swap">
 
+ 
 
 
     <!-- script ================================================== -->
-    <script src="js/modernizr.js"></script>
+    <script src="{% static 'js/modernizr.js' %}"></script>
+
+
+
+  
+
 
 </head>
 
@@ -592,7 +599,7 @@
             </div>
             <div class="modal-body">
             <!-- Modal body content goes here -->
-                Su reserva se ha realizado con éxito. ¡Gracias!
+            Reserva sujeta a confirmación de pago. Contactarse por whatsapp para recibir link de pago
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="$('#graciasModal').modal('hide');">Cerrar</button>
@@ -621,7 +628,7 @@
                 <div class="col-12 col-md-6 col-lg-6 mt-4 mt-lg-0">
                     <label for="return-date" class="label-style text-capitalize form-label">Fecha Entrega</label>
                     <div class="input-group date" id="datepicker2">
-                        <input type="text" class="form-control p-3" id="return-date" />
+                        <input type="text" class="form-control p-3" id="return-date"  />
                         <span class="input-group-append">
                             <span class="search-icon-position position-absolute p-3">
                                 <iconify-icon class="search-icons" icon="solar:calendar-broken"></iconify-icon>
@@ -1259,13 +1266,13 @@
 
                 <div class="accordion-item mt-3">
                     <h5 class="accordion-header" id="panelsStayOpen-headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
                             aria-controls="panelsStayOpen-collapseOne">
                             ¿Quiénes somos?
                         </button>
                     </h5>
-                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
                         <div class="accordion-body">
                             <p>Rental del Fin del Mundo es una empresa que fue concebida para ofrecer  movilidad propia a lugareños y
                                 turistas que visiten la ciudad de Ushuaia, para que puedan emprender su propia aventura, priorizando la
@@ -1518,11 +1525,7 @@
         </div>
     
     </section>
-    
-    
-
-
-
+ 
     <!-- redes Section Starts -->
     <div id="contacto">
         <div style="padding: 3%;">
@@ -1536,6 +1539,7 @@
                     Lunes a viernes 9 a 13 hs - 15 a 20 hs | Sábados 09 a 13 hs</span>
                 <br>
                 <span> <iconify-icon class="social-link-icon pe-4 custom-icon" icon="mdi:email"></iconify-icon> rentaldelfindelmundo@gmail.com</span>
+                
             </div>
         </div>
              
@@ -1585,11 +1589,11 @@
         </div> -->
 
     </div>
-    
+ 
     <div>            
         <div class="container">
-            <footer class="d-flex flex-wrap justify-content-between align-items-center py-2">
-                <div class="text-center">
+            <footer class="d-flex flex-wrap justify-content-between align-items-center py-2" >
+                <div class="text-center" >
                     <p class="py-3" > Seguinos en nuestras redes </p>
                 </div>
                 <div class="d-flex justify-content-center">
@@ -1611,6 +1615,9 @@
             </footer>
         </div>
     </div>
+ 
+
+
     <script>
         document.querySelectorAll('.anchor-link').forEach(link => {
         link.addEventListener('click', function(e) {
