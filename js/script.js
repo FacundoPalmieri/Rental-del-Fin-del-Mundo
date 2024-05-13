@@ -49,8 +49,6 @@
       }
     });
 
-    switchInput.click()
-
     contentElements.forEach(function (element) {
       if (element.classList.contains('yearly')) {
         element.style.display = 'block';
@@ -83,7 +81,7 @@
     });    // Add event listener to the switch input
 
 
-
+    switchInput.click()
 
 
     // rental swiper
