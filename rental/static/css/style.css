@@ -1096,3 +1096,26 @@ iconify-icon.property-icon {
   text-align: center;
   margin-bottom: 2.5em;
 }
+
+
+/* Icono flotante Whataspp*/
+
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px; /* borde inferior */
+  right: 15px; /*  borde derecho */
+  z-index: 1000;
+  padding: 2px; /* espacio alrededor del icono para hacerlo más grande */
+  border-radius: 50%; 
+  width: 60px; /*  ancho del contenedor */
+  height: 60px; /*  altura del contenedor */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.whatsapp-icon {
+  width: 100%; /* Utiliza el 100% del contenedor */
+  height: auto; /* Ajusta la altura automáticamente para mantener la proporción */
+  color: #fff; /* Cambia el color del icono */
+}
