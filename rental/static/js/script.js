@@ -111,13 +111,20 @@
     });
 
 
-
-
-    //date picker
-    $("#datepicker1, #datepicker2").datepicker({
-      autoclose: true,
-      todayHighlight: true,
-    }).datepicker('update', new Date());
+    // Inicialización del Datepicker
+    $(document).ready(function() {
+    
+      var today = new Date();
+  
+      
+      $("#datepicker1, #datepicker2").datepicker({
+          autoclose: true,
+          todayHighlight: true,
+          format: 'dd/mm/yyyy',
+          startDate: today // La fecha actual como fecha de inicio e impide elegir fechas anteriores.
+      }).datepicker('update', today);
+  });
+  
 
 
 

@@ -1107,8 +1107,8 @@ iconify-icon.property-icon {
   z-index: 1000;
   padding: 2px; /* espacio alrededor del icono para hacerlo más grande */
   border-radius: 50%; 
-  width: 60px; /*  ancho del contenedor */
-  height: 60px; /*  altura del contenedor */
+  width: 45px; /*  ancho del contenedor */
+  height: 45px; /*  altura del contenedor */
   display: flex;
   justify-content: center;
   align-items: center;
