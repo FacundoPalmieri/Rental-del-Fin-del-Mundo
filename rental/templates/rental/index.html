@@ -1757,15 +1757,29 @@
             // Check if start_date parameter exists
             var startDateParam = getUrlParameter('start_date');
             if (startDateParam !== '') {
+                
+                 // Split the original string into parts
+                var parts = startDateParam.split('-');
+
+                // Rearrange the parts to convert the format
+                var startDateParam = parts[1] + '-' + parts[2] + '-' + parts[0];
+
                 // Set datepicker1 value to start_date
-                $("#datepicker1").datepicker('setDate', new Date(startDateParam));
+                $("#datepicker1").datepicker('setDate', startDateParam);
             }
 
             // Check if end_date parameter exists
             var endDateParam = getUrlParameter('end_date');
             if (endDateParam !== '') {
+
+                // Split the original string into parts
+                var parts = endDateParam.split('-');
+
+                // Rearrange the parts to convert the format
+                var endDateParam = parts[1] + '-' + parts[2] + '-' + parts[0];
+
                 // Set datepicker2 value to end_date
-                $("#datepicker2").datepicker('setDate', new Date(endDateParam));
+                $("#datepicker2").datepicker('setDate', endDateParam);
             }
         });
 

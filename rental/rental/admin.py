@@ -88,8 +88,8 @@ class RentalAdmin(admin.ModelAdmin):
 
         # Customize this according to your Rental model
         rentals_data = [{'title': f"{rental.auto} / {rental.nombre} {rental.apellido}",
-                        'start': rental.fecha_retiro.strftime('%Y-%m-%d'),
-                        'end': rental.fecha_devolucion.strftime('%Y-%m-%d') if rental.fecha_devolucion else None,
+                        'start': rental.fecha_retiro.strftime('%Y-%d-%m'),
+                        'end': rental.fecha_devolucion.strftime('%Y-%d-%m') if rental.fecha_devolucion else None,
                         'url': reverse('admin:rental_rental_change', args=(rental.pk,)),
                         'color': rental.color}  # Include color information
                         for rental in qs]

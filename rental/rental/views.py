@@ -23,8 +23,8 @@ def index(request):
             return render(request, 'rental/index.html', {'autos_disponbiles': available_autos_data} )
 
         # Convert string dates to datetime objects
-        start_date = datetime.strptime(start_date_str, '%Y-%m-%d').date()
-        end_date = datetime.strptime(end_date_str, '%Y-%m-%d').date()
+        start_date = datetime.strptime(start_date_str, '%Y-%d-%m').date()
+        end_date = datetime.strptime(end_date_str, '%Y-%d-%m').date()
 
         # Query rentals that overlap with the given period
         overlapping_rentals = Rental.objects.filter(

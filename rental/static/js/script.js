@@ -116,13 +116,24 @@
     
       var today = new Date();
   
-      
-      $("#datepicker1, #datepicker2").datepicker({
+      $("#datepicker1").datepicker({
           autoclose: true,
           todayHighlight: true,
           format: 'dd/mm/yyyy',
           startDate: today // La fecha actual como fecha de inicio e impide elegir fechas anteriores.
       }).datepicker('update', today);
+
+      // Añadir un dia a la fecha actual
+      var tomorrow = new Date(today);
+      tomorrow.setDate(tomorrow.getDate() + 1);
+
+      $("#datepicker2").datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        format: 'dd/mm/yyyy',
+        startDate: tomorrow // Fecha de entrega como un día después por defecto
+      }).datepicker('update', tomorrow);
+
   });
   
 
