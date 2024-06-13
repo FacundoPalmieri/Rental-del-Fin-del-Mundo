@@ -114,26 +114,47 @@
     // Inicialización del Datepicker
     $(document).ready(function() {
     
-      var today = new Date();
-  
-      $("#datepicker1").datepicker({
-          autoclose: true,
-          todayHighlight: true,
-          format: 'dd/mm/yyyy',
-          startDate: today // La fecha actual como fecha de inicio e impide elegir fechas anteriores.
-      }).datepicker('update', today);
+        // Obtener fecha actual
+        let today = new Date();
+        // Ajustar hora deseada (9:00 AM)
+        today.setHours(9, 0, 0, 0);
+        // Obtener offset del timezone local en minutos
+        let offset = today.getTimezoneOffset();
+        // Ajustar la hora de acuerdo al offset
+        today.setMinutes(today.getMinutes() - offset);
+        // Obtener el elemento Fecha de retiro
+        var pickUpDate = document.getElementById('pick-up-date');
+        // Asignar el valor al input Fecha de retiro
+        pickUpDate.value = today.toISOString().slice(0, -8);
+        // Bloquear fechas anteriores
+        pickUpDate.min = today.toISOString().slice(0, -8);
+        // Sumar un dia a la fecha actual
+        let tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        // Asignar el valor al input Fecha de entrega
+        var returnDate = document.getElementById('return-date');
+        // Asignar el valor al input Fecha de entrega
+        returnDate.value = tomorrow.toISOString().slice(0, -8);
+        // Bloquear fechas anteriores
+        returnDate.min = tomorrow.toISOString().slice(0, -8);
 
-      // Añadir un dia a la fecha actual
-      var tomorrow = new Date(today);
-      tomorrow.setDate(tomorrow.getDate() + 1);
+        // Restringir horario de retiro
+        pickUpDate.addEventListener('input', function() {
+          var selectedTime = new Date(this.value);
+          if (selectedTime.getHours() < 9) {
+            alert("Los retiros comienzan a partir de las 9:00hs");
+              this.value = today.toISOString().slice(0, -8); // Volver a poner fecha inicial
+          }
+        });
 
-      $("#datepicker2").datepicker({
-        autoclose: true,
-        todayHighlight: true,
-        format: 'dd/mm/yyyy',
-        startDate: tomorrow // Fecha de entrega como un día después por defecto
-      }).datepicker('update', tomorrow);
-
+        // Restringir horario de entrega
+        returnDate.addEventListener('input', function() {
+          var selectedReturnTime = new Date(this.value);
+          if (selectedReturnTime.getHours() < 9) {
+            alert("La entrega puede realizarse a partir de las 9:00hs");
+              this.value = tomorrow.toISOString().slice(0, -8); // Volver a poner fecha inicial
+          }
+        });
   });
   
 

@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from .forms import RentalForm
 from decimal import Decimal
 import math
+from django.db.models import Q
 
 def index(request):
 
@@ -23,9 +24,11 @@ def index(request):
             return render(request, 'rental/index.html', {'autos_disponbiles': available_autos_data} )
 
         # Convert string dates to datetime objects
-        start_date = datetime.strptime(start_date_str, '%Y-%d-%m').date()
-        end_date = datetime.strptime(end_date_str, '%Y-%d-%m').date()
+        start_date = datetime.strptime(start_date_str, '%Y-%m-%dT%H:%M').date()
+        end_date = datetime.strptime(end_date_str, '%Y-%m-%dT%H:%M').date()
 
+        print(start_date)
+        print(end_date)
         # Query rentals that overlap with the given period
         overlapping_rentals = Rental.objects.filter(
             fecha_retiro__lte=end_date,

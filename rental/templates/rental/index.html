@@ -9,8 +9,6 @@
 <script src="{% static 'js/plugins.js' %}"></script>
 <script src="{% static 'js/script.js' %}"></script>
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-<script
-    src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
@@ -119,8 +117,6 @@
 
     <!--Bootstrap ================================================== -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
 
     <!-- Style Sheet ================================================== -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
@@ -623,24 +619,13 @@
                 <div class="col-12 col-md-6 col-lg-6 mt-4 mt-lg-0">
                     <label for="pick-up-date" class="label-style text-capitalize form-label">Fecha Retiro</label>
                     <div class="input-group date" id="datepicker1">
-                        <input type="text" class="form-control p-3" id="pick-up-date" />
-                        <span class="input-group-append">
-                            <span class="search-icon-position position-absolute p-3">
-                                <iconify-icon class="search-icons" icon="solar:calendar-broken"></iconify-icon>
-                            </span>
-                        </span>
-
+                        <input type="datetime-local" class="form-control p-3" id="pick-up-date" />
                     </div>
                 </div>
                 <div class="col-12 col-md-6 col-lg-6 mt-4 mt-lg-0">
                     <label for="return-date" class="label-style text-capitalize form-label">Fecha Entrega</label>
                     <div class="input-group date" id="datepicker2">
-                        <input type="text" class="form-control p-3" id="return-date"  />
-                        <span class="input-group-append">
-                            <span class="search-icon-position position-absolute p-3">
-                                <iconify-icon class="search-icons" icon="solar:calendar-broken"></iconify-icon>
-                            </span>
-                        </span>
+                        <input type="datetime-local" class="form-control p-3" id="return-date"  />
                     </div>
                 </div>
             </form>
@@ -1687,22 +1672,16 @@
             var pickUpDate = document.getElementById("pick-up-date").value;
             var returnDate = document.getElementById("return-date").value;
 
-            // Format dates to YYYY-MM-DD
-            var formattedPickUpDate = formatDate(pickUpDate);
-            var formattedReturnDate = formatDate(returnDate);
+
 
             // Construct the URL with the formatted values
-            var url = "http://localhost:8000/?start_date=" + formattedPickUpDate + "&end_date=" + formattedReturnDate;
+            var url = "http://localhost:8000/?start_date=" + pickUpDate + "&end_date=" + returnDate;
 
             // Redirect the user to the constructed URL
             window.location.href = url;
         });
 
-        // Function to format date to YYYY-MM-DD
-        function formatDate(dateString) {
-            var parts = dateString.split("/");
-            return parts[2] + "-" + parts[0].padStart(2, '0') + "-" + parts[1].padStart(2, '0');
-        }
+
             
         const urlParams = new URLSearchParams(window.location.search);
         const startDate = urlParams.get('start_date');
@@ -1784,6 +1763,21 @@
         });
 
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          var input = document.getElementById('pick-up-date');
+          var input2 = document.getElementById('return-date');
+          
+          input.addEventListener('click', function () {
+            input.showPicker()
+          });
+
+          input2.addEventListener('click', function () {
+            input2.showPicker()
+          });
+          
+        });
+        </script>
 </body>
 
 </html>
