@@ -123,7 +123,8 @@ def index(request):
                 'plan': auto.plan,
                 'precio_total': f"{round(Decimal(getattr(Plan.objects.get(tipo=auto.plan), month))* (1 - discount_percentages[auto.plan][dias] / Decimal('100'))) * Decimal(str(difference.days))}.000" if difference != timedelta(days=1) else f"{getattr(Plan.objects.get(tipo=auto.plan), month)}",
                 'precio_por_dia': f"{round(Decimal(getattr(Plan.objects.get(tipo=auto.plan), month))* (1 - discount_percentages[auto.plan][dias] / Decimal('100')))}.000" if difference != timedelta(days=1) else f"{getattr(Plan.objects.get(tipo=auto.plan), month)}",
-                'precio_horas_extra': f"{round(Decimal(difference_hours * discount_percentages[auto.plan]['hora_extra']))}.000",
+                'precio_horas_extra': f"{round(Decimal(getattr(Plan.objects.get(tipo=auto.plan), month)) * (1 - discount_percentages[auto.plan]['hora_extra'] / Decimal('100')))*difference_hours}.000",
+                'precio_hora_extra': f"{round(Decimal(getattr(Plan.objects.get(tipo=auto.plan), month)) * (1 - discount_percentages[auto.plan]['hora_extra'] / Decimal('100')))}.000",
                 # ROUND NORMAL    
                 #'precio_total': f"{round((Decimal(getattr(Plan.objects.get(tipo=auto.plan, trimestre='Marzo/Abril/Mayo'), month)) * Decimal(str(difference.days))) * (1 - discount_percentages[auto.plan][dias] / Decimal('100')))}.000" if difference != timedelta(days=1) else f"{getattr(Plan.objects.get(tipo=auto.plan, trimestre='Marzo/Abril/Mayo'), month) * difference.days * (1 - discount_percentages[auto.plan][dias] / Decimal('100'))}",
                 #'precio_por_dia': f"{round(Decimal(getattr(Plan.objects.get(tipo=auto.plan, trimestre='Marzo/Abril/Mayo'), month))* (1 - discount_percentages[auto.plan][dias] / Decimal('100')))}.000" if difference != timedelta(days=1) else f"{getattr(Plan.objects.get(tipo=auto.plan, trimestre='Marzo/Abril/Mayo'), month)}"
@@ -150,4 +151,4 @@ def index(request):
     else:
         form = RentalForm()
 
-    return render(request, 'rental/index.html', {'autos_disponbiles': available_autos_data, 'dias': difference_days, 'form': form, 'gracias': gracias} )
+    return render(request, 'rental/index.html', {'autos_disponbiles': available_autos_data, 'dias': difference_days, 'horas': difference_hours, 'form': form, 'gracias': gracias} )

@@ -480,7 +480,7 @@
             {% if autos_disponbiles %}
                 <ul class="busqueda">
                     <div>
-                        Buscando rental por {{dias}} dias...
+                        Buscando rental por {{dias}} dias y {{horas}} hs extra... (valor de hora extra)
                         <br>
                         Desde {{request.GET.start_date}} hasta {{request.GET.end_date}}
                     </div>
@@ -490,7 +490,10 @@
                         <p class="mb-0"><img src='{{auto.imagen}}' style="width:200px;" class="card-img-top" alt="..."></p>
                         <div class="card-body">
                             <h4 class="card-title">{{auto.marca}} {{auto.modelo}}</h4>
-                            <div>Precio: $<span id="precio-{{ auto.id }}" data-precio="{{ auto.precio_total }}">{{ auto.precio_total }} {{ auto.precio_horas_extra }}</span> (${{ auto.precio_por_dia }} por día)</div>
+                            <div>Precio total: $<span id="precio-{{ auto.id }}" data-precio="{{ auto.precio_total }}">{{ auto.precio_total }} + ${{ auto.precio_horas_extra }}</span> ({{dias}} dias y {{horas}}hs extra) </div>
+                            <div>Valor por día: ${{ auto.precio_por_dia }}</div>
+                            <div>Valor por hora extra: ${{ auto.precio_hora_extra }}</div>
+                            
                             <div class="card-text">
                                 <ul class="d-flex list-unstyled">
                                     <div class="row">
