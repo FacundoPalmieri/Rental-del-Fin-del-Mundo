@@ -15,17 +15,17 @@ class PlanAdmin(admin.ModelAdmin):
             'Basico': {'dos_a_tres': Decimal('6.69'), 
                        'cuatro_a_seis': Decimal('9.26'), 
                        'siete_o_mas': Decimal('10.82'), 
-                       #'hora_extra': Decimal('91.02')
+                       'hora_extra': Decimal('91.02')
                        },
             'Estandar': {'dos_a_tres': Decimal('6.98'), 
                          'cuatro_a_seis': Decimal('8.30'), 
                          'siete_o_mas': Decimal('11.63'), 
-                         #'hora_extra': Decimal('91.02')
+                         'hora_extra': Decimal('91.02')
                          },
             'Pro': {'dos_a_tres': Decimal('4.55'), 
                     'cuatro_a_seis': Decimal('7.06'), 
                     'siete_o_mas': Decimal('7.58'), 
-                    #'hora_extra': Decimal('91.02')
+                    'hora_extra': Decimal('91.02')
                     }
         }
 

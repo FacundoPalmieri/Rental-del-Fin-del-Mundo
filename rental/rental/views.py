@@ -24,15 +24,19 @@ def index(request):
             return render(request, 'rental/index.html', {'autos_disponbiles': available_autos_data} )
 
         # Convert string dates to datetime objects
-        start_date = datetime.strptime(start_date_str, '%Y-%m-%dT%H:%M').date()
-        end_date = datetime.strptime(end_date_str, '%Y-%m-%dT%H:%M').date()
+        start_date_full = datetime.strptime(start_date_str, '%Y-%m-%dT%H:%M')
+        end_date_full = datetime.strptime(end_date_str, '%Y-%m-%dT%H:%M')
 
-        print(start_date)
-        print(end_date)
+        # Extract date and time components separately
+        start_date = start_date_full.date()
+        start_time = start_date_full.time()  
+        end_date = end_date_full.date()
+        end_time = end_date_full.time()
+
         # Query rentals that overlap with the given period
         overlapping_rentals = Rental.objects.filter(
-            fecha_retiro__lte=end_date,
-            fecha_devolucion__gte=start_date
+            fecha_retiro__lte=end_date_full,
+            fecha_devolucion__gte=start_date_full
         )
 
         # Get the list of autos from overlapping rentals
@@ -45,9 +49,20 @@ def index(request):
         available_autos = all_autos.exclude(id__in=unavailable_autos)
 
 
+        # Calculate the time difference
         difference = end_date - start_date
+
+        # Calculate the duration in days and remaining hours
         difference_days = difference.days
+        difference_hours = end_date_full - start_date_full
+        difference_hours = difference_hours.seconds // 3600
         dias = None
+
+        print('start_date:', start_date)
+        print('start_time:', start_time)
+        print('end_date:', end_date)
+        print('end_time:', end_time)
+        print('DIFFERENCE:', difference_days, 'days,', difference_hours, 'hours')
 
         if difference == timedelta(days=1):
             dias = 'un_dia'
@@ -86,9 +101,9 @@ def index(request):
 #        }
 
         discount_percentages = {
-            'Basico': {'dos_a_tres': Decimal('6.69'), 'cuatro_a_seis': Decimal('9.26'), 'siete_o_mas': Decimal('10.82')},
-            'Estandar': {'dos_a_tres': Decimal('6.98'), 'cuatro_a_seis': Decimal('8.30'), 'siete_o_mas': Decimal('11.63')},
-            'Pro': {'dos_a_tres': Decimal('4.55'), 'cuatro_a_seis': Decimal('7.06'), 'siete_o_mas': Decimal('7.58')}
+            'Basico': {'dos_a_tres': Decimal('6.69'), 'cuatro_a_seis': Decimal('9.26'), 'siete_o_mas': Decimal('10.82'), 'hora_extra': Decimal('91.02')},
+            'Estandar': {'dos_a_tres': Decimal('6.98'), 'cuatro_a_seis': Decimal('8.30'), 'siete_o_mas': Decimal('11.63'), 'hora_extra': Decimal('91.02')},
+            'Pro': {'dos_a_tres': Decimal('4.55'), 'cuatro_a_seis': Decimal('7.06'), 'siete_o_mas': Decimal('7.58'), 'hora_extra': Decimal('91.02')}
         }
 
         # Serialize available autos data
@@ -107,7 +122,8 @@ def index(request):
                 'caja': auto.caja,
                 'plan': auto.plan,
                 'precio_total': f"{round(Decimal(getattr(Plan.objects.get(tipo=auto.plan), month))* (1 - discount_percentages[auto.plan][dias] / Decimal('100'))) * Decimal(str(difference.days))}.000" if difference != timedelta(days=1) else f"{getattr(Plan.objects.get(tipo=auto.plan), month)}",
-                'precio_por_dia': f"{round(Decimal(getattr(Plan.objects.get(tipo=auto.plan), month))* (1 - discount_percentages[auto.plan][dias] / Decimal('100')))}.000" if difference != timedelta(days=1) else f"{getattr(Plan.objects.get(tipo=auto.plan), month)}"
+                'precio_por_dia': f"{round(Decimal(getattr(Plan.objects.get(tipo=auto.plan), month))* (1 - discount_percentages[auto.plan][dias] / Decimal('100')))}.000" if difference != timedelta(days=1) else f"{getattr(Plan.objects.get(tipo=auto.plan), month)}",
+                'precio_horas_extra': f"{round(Decimal(difference_hours * discount_percentages[auto.plan]['hora_extra']))}.000",
                 # ROUND NORMAL    
                 #'precio_total': f"{round((Decimal(getattr(Plan.objects.get(tipo=auto.plan, trimestre='Marzo/Abril/Mayo'), month)) * Decimal(str(difference.days))) * (1 - discount_percentages[auto.plan][dias] / Decimal('100')))}.000" if difference != timedelta(days=1) else f"{getattr(Plan.objects.get(tipo=auto.plan, trimestre='Marzo/Abril/Mayo'), month) * difference.days * (1 - discount_percentages[auto.plan][dias] / Decimal('100'))}",
                 #'precio_por_dia': f"{round(Decimal(getattr(Plan.objects.get(tipo=auto.plan, trimestre='Marzo/Abril/Mayo'), month))* (1 - discount_percentages[auto.plan][dias] / Decimal('100')))}.000" if difference != timedelta(days=1) else f"{getattr(Plan.objects.get(tipo=auto.plan, trimestre='Marzo/Abril/Mayo'), month)}"
