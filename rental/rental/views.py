@@ -58,19 +58,27 @@ def index(request):
         difference_hours = difference_hours.seconds // 3600
         dias = None
 
+        # Si son 6hs extra o más, se suma un día completo
+        if difference_hours > 5:
+            difference_days = difference.days + 1
+            print('los dias de diferencia', difference_days)
+            difference_hours = 0
+
         print('start_date:', start_date)
         print('start_time:', start_time)
         print('end_date:', end_date)
         print('end_time:', end_time)
         print('DIFFERENCE:', difference_days, 'days,', difference_hours, 'hours')
 
-        if difference == timedelta(days=1):
+        if difference_days == 1:
             dias = 'un_dia'
-        elif timedelta(days=2) <= difference <= timedelta(days=3):
+        elif 2 <= difference_days <= 3:
             dias = 'dos_a_tres'
-        elif timedelta(days=4) <= difference <= timedelta(days=6):
+        elif 4 <= difference_days <= 6:
             dias = 'cuatro_a_seis'
-        elif difference.days >= 7:
+            print('son menos de 7')
+        elif difference_days >= 7:
+            print('son mas de 7')
             dias = 'siete_o_mas'
 
         months_spanish = {
@@ -121,7 +129,8 @@ def index(request):
                 'baul': auto.baul,
                 'caja': auto.caja,
                 'plan': auto.plan,
-                'precio_total': f"{round(Decimal(getattr(Plan.objects.get(tipo=auto.plan), month))* (1 - discount_percentages[auto.plan][dias] / Decimal('100'))) * Decimal(str(difference.days))}.000" if difference != timedelta(days=1) else f"{getattr(Plan.objects.get(tipo=auto.plan), month)}",
+                'precio_total': f"{round(Decimal(getattr(Plan.objects.get(tipo=auto.plan), month))* (1 - discount_percentages[auto.plan][dias] / Decimal('100'))) * Decimal(str(difference_days)) + (round(Decimal(getattr(Plan.objects.get(tipo=auto.plan), month)) * (1 - discount_percentages[auto.plan]['hora_extra'] / Decimal('100')))*difference_hours)}.000" if difference != timedelta(days=1) else f"{getattr(Plan.objects.get(tipo=auto.plan), month) + (round(Decimal(getattr(Plan.objects.get(tipo=auto.plan), month)) * (1 - discount_percentages[auto.plan]['hora_extra'] / Decimal('100')))*difference_hours)}",
+                'precio_total_dias': f"{round(Decimal(getattr(Plan.objects.get(tipo=auto.plan), month))* (1 - discount_percentages[auto.plan][dias] / Decimal('100'))) * Decimal(str(difference_days))}.000" if difference != timedelta(days=1) else f"{getattr(Plan.objects.get(tipo=auto.plan), month)}",
                 'precio_por_dia': f"{round(Decimal(getattr(Plan.objects.get(tipo=auto.plan), month))* (1 - discount_percentages[auto.plan][dias] / Decimal('100')))}.000" if difference != timedelta(days=1) else f"{getattr(Plan.objects.get(tipo=auto.plan), month)}",
                 'precio_horas_extra': f"{round(Decimal(getattr(Plan.objects.get(tipo=auto.plan), month)) * (1 - discount_percentages[auto.plan]['hora_extra'] / Decimal('100')))*difference_hours}.000",
                 'precio_hora_extra': f"{round(Decimal(getattr(Plan.objects.get(tipo=auto.plan), month)) * (1 - discount_percentages[auto.plan]['hora_extra'] / Decimal('100')))}.000",
