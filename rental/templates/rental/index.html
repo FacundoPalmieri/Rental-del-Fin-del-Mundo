@@ -483,6 +483,8 @@
                         Buscando rental por {{dias}} dias{% if horas %} y {{horas}} hs extra{% endif %}...
                         <br>
                         Desde {{request.GET.start_date}} hasta {{request.GET.end_date}}
+                        <br>
+                        <span style='color:red;'>Importante: a partir de 7hs extra se contará como un día completo</span>
                     </div>
                     {% for auto in autos_disponbiles %}
                     

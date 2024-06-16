@@ -58,8 +58,8 @@ def index(request):
         difference_hours = difference_hours.seconds // 3600
         dias = None
 
-        # Si son 6hs extra o más, se suma un día completo
-        if difference_hours > 5:
+        # Si son más de 6hs extra, se suma un día completo
+        if difference_hours > 6:
             difference_days = difference.days + 1
             print('los dias de diferencia', difference_days)
             difference_hours = 0
@@ -76,9 +76,7 @@ def index(request):
             dias = 'dos_a_tres'
         elif 4 <= difference_days <= 6:
             dias = 'cuatro_a_seis'
-            print('son menos de 7')
         elif difference_days >= 7:
-            print('son mas de 7')
             dias = 'siete_o_mas'
 
         months_spanish = {
