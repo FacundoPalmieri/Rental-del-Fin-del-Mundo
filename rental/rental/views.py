@@ -8,7 +8,7 @@ import math
 from django.db.models import Q
 from django_ratelimit.decorators import ratelimit
 
-@ratelimit(key='ip', rate='10/m', block=True)  # 10 peticiones por minuto por IP, si se exceden bloquea el acceso
+#@ratelimit(key='ip', rate='10/m', block=True)  # 10 peticiones por minuto por IP, si se exceden bloquea el acceso
 def index(request):
 
     #http://localhost:8000?start_date=2024-04-03&end_date=2024-04-10
