@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .models import Auto, Rental, Plan
+from .models import Auto, Rental, Plan, Seguro
 from datetime import datetime, timedelta
 from .forms import RentalForm
 from decimal import Decimal
@@ -48,6 +48,7 @@ def index(request):
         # Filter available autos
         available_autos = all_autos.exclude(id__in=unavailable_autos)
 
+        seguro_full = Seguro.objects.get(nombre='full').precio
 
         # Calculate the time difference
         difference = end_date - start_date
@@ -61,14 +62,15 @@ def index(request):
         # Si son más de 6hs extra, se suma un día completo
         if difference_hours > 6:
             difference_days = difference.days + 1
-            print('los dias de diferencia', difference_days)
             difference_hours = 0
 
-        print('start_date:', start_date)
-        print('start_time:', start_time)
-        print('end_date:', end_date)
-        print('end_time:', end_time)
-        print('DIFFERENCE:', difference_days, 'days,', difference_hours, 'hours')
+        seguro_full_x_dias = seguro_full * difference_days
+
+#        print('start_date:', start_date)
+#        print('start_time:', start_time)
+#        print('end_date:', end_date)
+#        print('end_time:', end_time)
+#        print('DIFFERENCE:', difference_days, 'days,', difference_hours, 'hours')
 
         if difference_days == 1:
             dias = 'un_dia'
@@ -98,7 +100,7 @@ def index(request):
 
         month = months_spanish[month_number].lower()
 
-        print('mes', month)
+#        print('mes', month)
 
 #        discount_percentages = {
 #            'Basico': {'dos_a_tres': Decimal('7.69'), 'cuatro_a_seis': Decimal('10.26'), 'siete_o_mas': Decimal('12.82')},
@@ -158,4 +160,4 @@ def index(request):
     else:
         form = RentalForm()
 
-    return render(request, 'rental/index.html', {'autos_disponbiles': available_autos_data, 'dias': difference_days, 'horas': difference_hours, 'form': form, 'gracias': gracias} )
+    return render(request, 'rental/index.html', {'autos_disponbiles': available_autos_data, 'dias': difference_days, 'horas': difference_hours, 'form': form, 'gracias': gracias, 'seguro_full': seguro_full, 'seguro_total': seguro_full_x_dias} )

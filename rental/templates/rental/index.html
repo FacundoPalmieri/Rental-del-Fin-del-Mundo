@@ -480,7 +480,7 @@
             {% if autos_disponbiles %}
                 <ul class="busqueda">
                     <div>
-                        Buscando rental por {{dias}} dias{% if horas %} y {{horas}} hs extra{% endif %}...
+                        Buscando rental por {{dias}} día{% if dias > 1 %}s{% endif %}{% if horas %} y {{horas}} hs extra{% endif %}...
                         <br>
                         Desde {{request.GET.start_date}} hasta {{request.GET.end_date}}
                         <br>
@@ -493,10 +493,9 @@
                         <div class="card-body">
                             <h4 class="card-title">{{auto.marca}} {{auto.modelo}}</h4>
                             <div>Precio total: $<span id="precio-{{ auto.id }}" data-precio="{{ auto.precio_total }}">{{ auto.precio_total }}</span></div>
-                            <div>{{dias}} dias{% if horas %} y {{horas}}hs extra{% endif %} (${{ auto.precio_total_dias }}{% if horas %} + ${{ auto.precio_horas_extra }}{% endif %})</div>
+                            <div>{{dias}} día{% if dias > 1 %}s{% endif %}{% if horas %} y {{horas}}hs extra{% endif %} (${{ auto.precio_total_dias }}{% if horas %} + ${{ auto.precio_horas_extra }}{% endif %})</div>
                             <div>Valor por día: ${{ auto.precio_por_dia }}</div>
                             <div>Valor por hora extra: ${{ auto.precio_hora_extra }}</div>
-                            
                             <div class="card-text">
                                 <ul class="d-flex list-unstyled">
                                     <div class="row">
@@ -538,7 +537,7 @@
             <div class="modal-body">
             <!-- Modal body content goes here -->
             <form method="post" class="custom-form">
-                <div class="mensaje-contacto">Vas a reservar <span id="auto-id"></span> por {{dias}} días (desde {{request.GET.start_date}} hasta {{request.GET.end_date}}) a un valor de {{auto.precio_total}}</div>
+                <div class="mensaje-contacto">Vas a reservar <span id="auto-id"></span> por {{dias}} días (desde {{request.GET.start_date}} hasta {{request.GET.end_date}}) a un valor de $<span id='id_precio_total'>$valor$</span></div>
                 {% csrf_token %}
                 <div class="row contacto">
                     <div class="col-md-6">
@@ -575,6 +574,17 @@
                         <div class="form-group d-none">
                             <label for="id_precio">Precio:</label>
                             {{ form.precio }}
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="id_seguro_full">¿Desea contratar <span style='color:#f58634;'>Seguro Full</span> por <span style='color:#f58634;'>${{seguro_total}}</span> (${{seguro_full}} por día)?:</label>
+                            <input type='radio' name='seguro' value='si' id='seguro_si'> <label for='seguro_si'>Sí</label>
+                            <input type='radio' name='seguro' value='no' id='seguro_no' checked> <label for='seguro_no'>No</label>                            
+                        </div>
+                        <div class="form-group d-none">
+                            {{ form.seguro_full }}
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -1722,10 +1732,36 @@
             // Remove commas from the value
             precioId = precioId.replace(',', '');
             $('#id_precio').val(parseFloat(precioId));
+            $('#id_precio_total').html(precioId);
 
             var autoId = $(this).attr('id');
             $('#id_auto').val(autoId);
             $('#auto-id').val(autoId);
+
+            let seguroVar = {{ seguro_total|default_if_none:"0" }};
+            const seguroSi = document.getElementById('seguro_si');
+            const seguroNo = document.getElementById('seguro_no');
+
+            // Add event listeners to detect changes
+            seguroSi.addEventListener('change', function() {
+                if (this.checked) {
+                    // 'Sí'
+                    $('#id_seguro_full').val(parseFloat(seguroVar));
+                    $('#id_seguro_full').html(seguroVar);
+
+                    $('#id_precio').val(parseFloat(parseInt(precioId) + parseInt(seguroVar)));
+                    $('#id_precio_total').html((parseInt(precioId) + parseInt(seguroVar)) + '.000');
+                }
+            });
+
+            seguroNo.addEventListener('change', function() {
+                if (this.checked) {
+                    // 'No'
+                    $('#id_seguro_full').val(parseFloat(0));
+                    $('#id_precio').val(parseFloat(precioId));
+                    $('#id_precio_total').html(precioId);
+                }
+            });
 
             $('#reservaModal').modal('show');
             $('#availabilityModal').modal('hide');

@@ -74,7 +74,15 @@ class Rental(models.Model):
     devuelto = models.BooleanField(default=False)
     observaciones = models.TextField(blank=True, null=True)
     precio = models.DecimalField(max_digits=50, decimal_places=3)
+    seguro_full = models.DecimalField(max_digits=50, decimal_places=3, blank=True, null=True)
     color = ColorField(default='#89CFF0', blank=True, null=True, samples=COLOR_PALETTE)
 
     def __str__(self):
         return f"{self.auto} / {self.nombre} {self.apellido}"
+
+class Seguro(models.Model):
+    nombre = models.CharField(max_length=100, unique=True)
+    precio = models.DecimalField(max_digits=50, decimal_places=3)
+
+    def __str__(self):
+        return f"{self.nombre} - {self.precio}"
