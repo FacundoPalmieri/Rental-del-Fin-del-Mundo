@@ -6,7 +6,9 @@ from .forms import RentalForm
 from decimal import Decimal
 import math
 from django.db.models import Q
+from django_ratelimit.decorators import ratelimit
 
+@ratelimit(key='ip', rate='10/m', block=True)  # 10 peticiones por minuto por IP, si se exceden bloquea el acceso
 def index(request):
 
     #http://localhost:8000?start_date=2024-04-03&end_date=2024-04-10
@@ -27,6 +29,9 @@ def index(request):
         start_date_full = datetime.strptime(start_date_str, '%Y-%m-%dT%H:%M')
         end_date_full = datetime.strptime(end_date_str, '%Y-%m-%dT%H:%M')
 
+        formatted_start_date = start_date_full.strftime('Desde el %d-%m-%Y %H:%Mhs')
+        formatted_end_date = end_date_full.strftime('hasta el %d-%m-%Y %H:%Mhs')
+
         # Extract date and time components separately
         start_date = start_date_full.date()
         start_time = start_date_full.time()  
@@ -42,8 +47,8 @@ def index(request):
         # Get the list of autos from overlapping rentals
         unavailable_autos = [rental.auto.id for rental in overlapping_rentals]
 
-        # Get all autos
-        all_autos = Auto.objects.all()
+        # Obtener todos los autos que estén disponibles (no en taller, reparación, etc)
+        all_autos = Auto.objects.filter(disponible=True)
 
         # Filter available autos
         available_autos = all_autos.exclude(id__in=unavailable_autos)
@@ -160,4 +165,4 @@ def index(request):
     else:
         form = RentalForm()
 
-    return render(request, 'rental/index.html', {'autos_disponbiles': available_autos_data, 'dias': difference_days, 'horas': difference_hours, 'form': form, 'gracias': gracias, 'seguro_full': seguro_full, 'seguro_total': seguro_full_x_dias} )
+    return render(request, 'rental/index.html', {'autos_disponbiles': available_autos_data, 'dias': difference_days, 'horas': difference_hours, 'form': form, 'gracias': gracias, 'seguro_full': seguro_full, 'seguro_total': seguro_full_x_dias, 'formatted_start_date': formatted_start_date, 'formatted_end_date': formatted_end_date} )

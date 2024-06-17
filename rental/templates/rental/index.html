@@ -482,7 +482,7 @@
                     <div>
                         Buscando rental por {{dias}} día{% if dias > 1 %}s{% endif %}{% if horas %} y {{horas}} hs extra{% endif %}...
                         <br>
-                        Desde {{request.GET.start_date}} hasta {{request.GET.end_date}}
+                        {{formatted_start_date}} {{formatted_end_date}}
                         <br>
                         <span style='color:red;'>Importante: a partir de 7hs extra se contará como un día completo</span>
                     </div>
@@ -514,7 +514,7 @@
                     {% endfor %}
                 </ul>
                 {% else %}
-                <p>No hay autos disponibles para estas fechas.</p>
+                <p>Envíanos un mensaje por whatsapp, buscaremos la forma de encontrar la disponibilidad que necesitas.</p>
             {% endif %}
             </div>
             <div class="modal-footer">
@@ -1738,7 +1738,7 @@
             $('#id_auto').val(autoId);
             $('#auto-id').val(autoId);
 
-            let seguroVar = {{ seguro_total|default_if_none:"0" }};
+            let seguroVar = '{{ seguro_total|default_if_none:"0" }}';
             const seguroSi = document.getElementById('seguro_si');
             const seguroNo = document.getElementById('seguro_no');
 
