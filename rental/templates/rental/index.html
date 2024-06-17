@@ -492,10 +492,15 @@
                         <p class="mb-0"><img src='{{auto.imagen}}' style="width:200px;" class="card-img-top" alt="..."></p>
                         <div class="card-body">
                             <h4 class="card-title">{{auto.marca}} {{auto.modelo}}</h4>
-                            <div>Precio total: $<span id="precio-{{ auto.id }}" data-precio="{{ auto.precio_total }}">{{ auto.precio_total }}</span></div>
-                            <div>{{dias}} día{% if dias > 1 %}s{% endif %}{% if horas %} y {{horas}}hs extra{% endif %} (${{ auto.precio_total_dias }}{% if horas %} + ${{ auto.precio_horas_extra }}{% endif %})</div>
-                            <div>Valor por día: ${{ auto.precio_por_dia }}</div>
-                            <div>Valor por hora extra: ${{ auto.precio_hora_extra }}</div>
+                            <h4 style='color:#f58634;'>$<span id="precio-{{ auto.id }}" data-precio="{{ auto.precio_total }}">{{ auto.precio_total }}</span></h4>
+                            <button class="btn btn-primary mb-2 p-1" type="button" data-toggle="collapse" data-target="#detailsCollapse{{ forloop.counter }}" aria-expanded="false" aria-controls="detailsCollapse{{ forloop.counter }}">
+                                Ver detalles
+                            </button>
+                            <div class="collapse" id="detailsCollapse{{ forloop.counter }}">
+                                <div>{{dias}} día{% if dias > 1 %}s{% endif %}{% if horas %} y {{horas}}hs extra{% endif %} (${{ auto.precio_total_dias }}{% if horas %} + ${{ auto.precio_horas_extra }}{% endif %})</div>
+                                <div>Valor por día: ${{ auto.precio_por_dia }}</div>
+                                <div>Valor por hora extra: ${{ auto.precio_hora_extra }}</div>
+                            </div>
                             <div class="card-text">
                                 <ul class="d-flex list-unstyled">
                                     <div class="row">
